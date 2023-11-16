@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS cravingsdb;
+CREATE DATABASE cravingsdb;
