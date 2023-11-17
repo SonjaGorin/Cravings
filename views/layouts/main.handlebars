@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="utf-8">
+     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+     <title>Carleton U - Techie Blog</title>
+     <meta content="" name="description">
+     <meta content="" name="keywords">
+
+     <!-- Google Fonts -->
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Lato:400,300,700,900"
+          rel="stylesheet">
+
+     <!-- CSS Files -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+     <link rel="stylesheet" type="text/css" href="/css/style.css">
+     <link rel="stylesheet" type="text/css" href="/css/jass.css">
+</head>
+
+<body>
+
+     <!-- ======= Header ======= -->
+     <header id="header" class="fixed-top d-flex align-items-center">
+          <div class="container d-flex align-items-center">
+
+               <div class="logo me-auto">
+                    <h1><a href="#">Cravings</a></h1>
+                    <!-- Uncomment below if you prefer to use an image logo -->
+                    <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+               </div>
+
+               <nav id="navbar" class="navbar">
+                    <ul>
+                         <li><a class="nav-link scrollto active" href="/">Home</a></li>
+                         <li><a class="nav-link scrollto" href="/">Recipies</a></li>
+
+                         <!-- This is done this way because when element is not rendered in the DOM the Javascript fails -->
+                         {{#if logged_in}}
+                         <li><a id="logout" class="nav-link scrollto" href="#">Logout</a></li>
+                         <li><a id="login" class="nav-link scrollto" href="#" hidden>Login</a></li>
+                         {{else}}
+                         <li><a id="logout" class="nav-link scrollto" href="#" hidden>Logout</a></li>
+                         <li><a id="login" class="nav-link scrollto" href="#">Login</a></li>
+                         {{/if}}
+
+                    </ul>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+               </nav><!-- .navbar -->
+
+          </div>
+     </header><!-- End #header -->
+
+     <main id="main" class="h-100">
+
+          {{{ body }}}
+
+     </main><!-- End #main -->
+
+     <!-- ======= Footer ======= -->
+     <footer id="footer" class="fixed-bottom">
+          <div class="container">
+               <div class="copyright">
+                    &copy; Copyright <strong><span>Carleton University - Bootcamp Program</span></strong>. All Rights
+                    Reserved
+               </div>
+
+          </div>
+     </footer><!-- End #footer -->
+
+     <!-- JQuery: fast, small, and feature-rich JavaScript library -->
+     <!-- https://jquery.com/ -->
+     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+     <!-- jQuery UI <script> tag -->
+     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+     <!-- Vendor JS Files -->
+     <script src="/js/bootstrap.bundle.min.js"></script>
+
+     <!-- Template Main JS File -->
+     <script src="/js/main.js"></script>
+
+</body>
+
+</html>
