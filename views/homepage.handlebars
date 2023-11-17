@@ -1,4 +1,13 @@
-<div>
-    <h2>Filter By:</h2>
-    {{> category-choices }}
-</div>
+<section>
+    <div>
+        <h2>Filter By:</h2>
+        {{> category-choices }}
+        {{> user-choices }}
+    </div>
+
+    <div>
+        {{#each recipes as |recipe|}}
+        {{> recipe-details }}
+        {{/each}}
+    </div>
+</section>
