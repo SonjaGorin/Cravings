@@ -11,7 +11,7 @@
 const { Users, Category } = require('../models'); //Seeding tables using bulkCreate
 const messages = require("../utils/formatter");
 const dic = require("../db/queries"); // Collection of SQL queries
-const connection = require("../config/newdb");
+const dbConnect = require("../config/newdb");
 
 // Seeding files - array of components
 const userData = require('./userData.json');
@@ -29,7 +29,7 @@ const fs = require("fs");
  * @returns true/false
  */
 async function executeSQL(value) {
-     const connection = await connection.connectmysql(process.env.DB_NAME); // Get connection to database
+     const connection = await dbConnect.connectmysql(process.env.DB_NAME); // Get connection to database
 
      try {
           for (let x = 0; x <= value.length - 1; x++) {
