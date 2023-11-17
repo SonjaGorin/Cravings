@@ -23,7 +23,7 @@ const dic = require("./queries"); // Collection of SQL queries
  * @returns 
  */
 exports.validateDB = async function (value) {
-     const cnn = await connection.connectmysql(process.env.DB_SYS); // Get connection to database
+     const cnn = await connection.connectmysql(process.env.DB_NAME); // Get connection to database
 
      const [rows, fields] = await cnn.execute(dic.sql.validatetables + `"${value}"`);
 
