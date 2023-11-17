@@ -43,6 +43,7 @@ build/Release
 craving_db/
 node_modules/
 jspm_packages/
+secrets/
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/

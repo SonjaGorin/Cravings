@@ -92,7 +92,7 @@ initializedatabase.validateDB(process.env.DB_NAME)
           // The validate whether the database contains all the tables required 
           // in case there aren't the same number of tables require it forces to 
           // sync database using the models and seeds them
-          if (data.created === true && data.data === false) {
+          if (process.env.DB_SEED === "1") {
 
                // Make sure we have initial data since database was deemed not valid
                sequelize.sync({ force: true })

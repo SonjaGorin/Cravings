@@ -23,14 +23,11 @@ const dic = require("./queries"); // Collection of SQL queries
  * @returns 
  */
 exports.validateDB = async function (value) {
-     const cnn = await connection.connectmysql(process.env.DB_NAME); // Get connection to database
 
-     const [rows, fields] = await cnn.execute(dic.sql.validatetables + `"${value}"`);
-
-     if (rows[0].TablesCount !== parseInt(process.env.DB_COUNT) + 1) {
+     if (process.env.DB_SEED === "1") {
 
           messages.msg(Chalk.bgRed(dic.messages.createdatabase), null, null, 80);
-          return { created: true, data: false };
+          return { force: true };
 
      } else {
           messages.msg(Chalk.bgGreen(`DATABASE ${value} ALREADY EXISTS!`));
