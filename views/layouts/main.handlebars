@@ -5,7 +5,7 @@
      <meta charset="utf-8">
      <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-     <title>Carleton U - Techie Blog</title>
+     <title>Cravings</title>
      <meta content="" name="description">
      <meta content="" name="keywords">
 
@@ -37,14 +37,14 @@
                <nav id="navbar" class="navbar">
                     <ul>
                          <li><a class="nav-link scrollto active" href="/">Home</a></li>
-                         <li><a class="nav-link scrollto" href="/">Recipies</a></li>
+                         {{!-- <li><a class="nav-link scrollto" href="/">Recipies</a></li> --}}
 
                          <!-- This is done this way because when element is not rendered in the DOM the Javascript fails -->
                          {{#if logged_in}}
-                         <li><a id="logout" class="nav-link scrollto" href="#">Logout</a></li>
+                         <li><a id="logout" class="nav-link scrollto" href="#">Log out</a></li>
                          <li><a id="login" class="nav-link scrollto" href="#" hidden>Login</a></li>
                          {{else}}
-                         <li><a id="logout" class="nav-link scrollto" href="#" hidden>Logout</a></li>
+                         <li><a id="logout" class="nav-link scrollto" href="#" hidden>Log out</a></li>
                          <li><a id="login" class="nav-link scrollto" href="#">Login</a></li>
                          {{/if}}
 

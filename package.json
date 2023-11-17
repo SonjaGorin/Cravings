@@ -1,14 +1,16 @@
 {
-     "name": "MVC-Tech.blog",
+     "name": "cravings",
      "version": "1.0.0",
      "description": "",
      "main": "server.js",
      "scripts": {
+          "test": "echo \"Error: no test specified\" && exit 1",
           "start": "node server.js",
-          "seed": "node seeds/seed.js"
+          "seed": "node seeds/seeding.js",
+          "watch": "nodemon server"
      },
      "keywords": [],
-     "author": "OntarioTECK - Gustavo Miller",
+     "author": "",
      "license": "ISC",
      "dependencies": {
           "bcrypt": "^5.0.0",
@@ -19,8 +21,12 @@
           "express": "^4.17.1",
           "express-handlebars": "^5.2.0",
           "express-session": "^1.17.1",
+          "handlebars": "^4.7.6",
           "figlet": "^1.7.0",
           "mysql2": "^2.2.5",
           "sequelize": "^6.3.5"
+     },
+     "devDependencies": {
+          "nodemon": "^2.0.7"
      }
 }
