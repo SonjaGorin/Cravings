@@ -30,7 +30,7 @@ Recipes.init(
                type: DataTypes.STRING,
                allowNull: false,
           },
-          instructions: {
+          instruction: {
                type: DataTypes.TEXT,
                allowNull: false,
           },
