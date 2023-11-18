@@ -21,6 +21,7 @@
           "express-session": "^1.17.1",
           "figlet": "^1.7.0",
           "mysql2": "^2.2.5",
+          "node-notifier": "^10.0.1",
           "sequelize": "^6.3.5"
      }
 }
