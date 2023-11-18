@@ -96,32 +96,36 @@ router.post("/validate", async (req, res) => {
   }
 });
 
-
-
 router.get("/members", async (req, res) => {
   try {
     const userData = await Users.findAll();
-    res.status(200).json(userData);
+    if (userData) {
+      res.status(200).json(userData);
+    } else {
+      return res.status(404).json(err);
+    }
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
-
 
 router.get("/:id", async (req, res) => {
   try {
     const userData = await Users.findByPk(req.params.id, {
-      include: [
-        {model: Recipe}
-      ]
+      include: [{ model: Recipe }],
     });
-    res.status(200).json(userData);
+
+    if (userData) {
+      res.status(200).json(userData);
+    } else {
+      return res.status(404).json(err);
+    }
   } catch (err) {
     console.log(err);
+
     res.status(500).json(err);
   }
 });
-
 
 module.exports = router;

@@ -16,6 +16,7 @@ const Ingredients = require("./Ingredients");
 
 Category.hasMany(Recipe, {
      foreignKey: 'category_id'
+     
 })
 
 Recipe.belongsTo(Category, {
@@ -33,7 +34,8 @@ Recipe.belongsTo(Users, {
 });
 
 Recipe.hasMany(Ingredients,{
-     foreignKey: "recipe_id"
+     foreignKey: "recipe_id",
+     onDelete: 'CASCADE'
 })
 
 module.exports = { Users, Category, Recipe, Ingredients };
