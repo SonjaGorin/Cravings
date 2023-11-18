@@ -3,7 +3,7 @@ const { Recipe, Category } = require("../../models");
 
 router.get("/", async (req, res) => {
   try {
-    const dbBlogData = await Recipe.findAll({
+    const recipeData = await Recipe.findAll({
       include: [
         {
           model: Category,
