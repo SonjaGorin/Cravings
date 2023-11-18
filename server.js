@@ -8,7 +8,7 @@
  * 
  * Date : 11/14/2023 5:50:29 PM
  *******************************************************************/
-require('dotenv').config();
+// require('dotenv').config();
 
 const express = require("express");
 const session = require("express-session");
@@ -37,7 +37,9 @@ const hbs = exphbs.create({ helpers });
 // Configure and link a session object with the sequelize store
 const sess = {
      secret: "pmaC ytisrevinU notelraC",
-     cookie: {},
+     cookie: {
+          maxAge: 24 * 60 * 60 * 1000,
+     },
      resave: false,
      saveUninitialized: true,
      store: new SequelizeStore({
@@ -113,7 +115,7 @@ initializedatabase.validateDB(process.env.DB_NAME)
           } else {
                // This will display a message on terminal
                messages.apiendpoints();
-               app.listen(PORT);
+               app.listen(PORT, () => console.log("Now listening"));
           }
 
      });

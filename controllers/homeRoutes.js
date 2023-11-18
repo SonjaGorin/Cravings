@@ -9,15 +9,39 @@
  * Date : 11/14/2023 5:50:29 PM
  *******************************************************************/
 const router = require("express").Router();
-const { Users } = require("../models");
+const { User, Recipe } = require("../models");
 const dic = require("../db/queries"); // Collection of SQL queries
 
 router.get('/', async (req, res) => {
-     res.render('hero', {
+     res.render('portal', {
           logged_in: req.session.logged_in,
           user_name: req.session.user_name,
      });
 });
+
+router.get("/home", async (req, res) => {
+     try {
+          const dbPostData = await Recipe.findAll({
+               include: [
+                    {
+                         model: User,
+                         attributes: ["name"],
+                    },
+               ],
+          });
+     
+          const recipes = dbPostData.map((recipe) =>
+               recipe.get({ plain: true })
+          );
+          res.render("homepage", {
+               recipes,
+               loggedIn: req.session.loggedIn,
+          });
+     } catch (err) {
+          console.log(err);
+          res.status(500).json(err);
+     }
+ });
 
 /**
  * Login route - user will be presented with login screen to 

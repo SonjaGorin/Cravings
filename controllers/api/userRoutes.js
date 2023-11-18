@@ -20,9 +20,15 @@ router.post('/register', async (req, res) => {
                     password: req.body.userpassword,
                }
           );
-          res.status(200).json(dsData);
+          req.session.save(() => {
+               req.session.user_id = dbUserData.id;
+               req.session.username = dbUserData.username;
+               req.session.loggedIn = true;
 
+               res.status(200).json(dsData);
+          });
      } catch (error) {
+          console.log(err);
           res.status(400).json(error);
      }
 })
@@ -59,10 +65,13 @@ router.post('/login', async (req, res) => {
                req.session.user_name = dsData.name;
                req.session.logged_in = true;
 
-               res.json({ user: dsData, message: 'You are now logged in!' });
+               res
+                    .status(200)
+                    .json({ user: dsData, message: 'You are now logged in!' });
           });
 
      } catch (error) {
+          console.log(err);
           res.status(400).json(error);
      }
 });
