@@ -1,9 +1,10 @@
+{{log handlebarData}}
 <section class="h-75">
      <div class="container-fluid">
 
           <div class="row">
                <div class="col-xs-6 col-md-3 col-xl-2 text-black mb-2">
-                    <select id="category_id" class="h-custom-2 ms-xl-4 form-select form-control-lg"
+                    <select id="categorylist" class="h-custom-2 ms-xl-4 form-select form-control-lg"
                          aria-label="Select Article Category">
 
                     </select>
@@ -15,9 +16,9 @@
                </div>
           </div>
 
-          <div class="row" style="flex-wrap: wrap;flex-direction: row;">
-               <div class="col-8 text-black d-flex">
-                    <table class="table">
+          <div class="row justify-content-center">
+               <div class="col-8 text-black">
+                    <table class="table table-responsive">
                          <thead>
                               <tr>
                                    <th scope="col">#</th>
@@ -28,51 +29,21 @@
                               </tr>
                          </thead>
                          <tbody>
-                              <tr>
-                                   <th scope="row">1</th>
-                                   <td> <a href="/view/1">Worlds Best Lasagna</a></td>
-                                   <td>Breakfast</td>
-                                   <td>2023-11-17 20:59:40</td>
-                                   <td>Jacob Fournier-Martin</td>
+                              {{#each handlebarData as | item |}}
+                              <tr id="recipeitem_{{item.id}}" data-category="{{item.category_id}}" data-memberid="{{item.user_id}}">
+                                   <th scope="row">{{item.id}}</th>
+                                   <td> <a href="/view/{{item.id}}">{{item.name}}</a></td>
+                                   <td>{{item.category.name}}</td>
+                                   <td>{{item.date_registered}}</td>
+                                   <td>{{item.user.name}}</td>
                               </tr>
-                              <tr>
-                                   <th scope="row">2</th>
-                                   <td><a href="/view/1">Teriyaki Chicken</a></td>
-                                   <td>Main dishes</td>
-                                   <td>2023-11-17 20:59:40</td>
-                                   <td>Jacob Fournier-Martin</td>
-                              </tr>
-                              <tr>
-                                   <th scope="row">3</th>
-                                   <td><a href="/view/2">Never-Fail Scalloped Potatoes</a></td>
-                                   <td>Main dishes</td>
-                                   <td>2023-11-17 20:59:40</td>
-                                   <td>Jacob Fournier-Martin</td>
-                              </tr>
-                              <tr>
-                                   <th scope="row">4</th>
-                                   <td><a href="/view/3">Chicken Schnitzels</a></td>
-                                   <td>Main dishes</td>
-                                   <td>2023-11-17 20:59:40</td>
-                                   <td>Sonja Gorin</td>
-                              </tr>
-                              <tr>
-                                   <th scope="row">5</th>
-                                   <td><a href="/view/5">Teriyaki Chicken</a></td>
-                                   <td>Main dishes</td>
-                                   <td>2023-11-17 20:59:40</td>
-                                   <td>Gustavo Miller</td>
-                              </tr>
-                              <tr>
-                                   <th scope="row">6</th>
-                                   <td><a href="/view/6">Spaghetti Sauce</a></td>
-                                   <td>Sauces</td>
-                                   <td>2023-11-17 20:59:40</td>
-                                   <td>Sonja Gorin</td>
-                              </tr>
+                              {{/each}}
                          </tbody>
                     </table>
                </div>
           </div>
      </div>
 </section>
+
+<!-- The script is there but not connected, I need Jacobs API/Endpoints -->
+{{!-- <script src="/js/filter.js"></script> --}}

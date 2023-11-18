@@ -18,8 +18,7 @@ const helpers = require("./utils/helpers");
 const seeding = require("./seeds/seeding");
 const path = require("path");
 
-// OntarioTECK VBA Custom customized initialization
-const initializedatabase = require("./db/initdb")
+// Custom customized initialization
 const messages = require("./utils/formatter")
 
 const sequelize = require("./config/connection");
