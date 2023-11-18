@@ -9,8 +9,10 @@
  * Date : 11/14/2023 5:50:29 PM
  *******************************************************************/
 const router = require("express").Router();
-const { Users } = require("../models");
+const { Users, Category, Recipe, Ingredients } = require("../models");
+const withAuth = require("../utils/auth");
 const dic = require("../db/queries"); // Collection of SQL queries
+const notifier = require('node-notifier');
 
 router.get('/', async (req, res) => {
      res.render('hero', {
@@ -32,13 +34,35 @@ router.get('/login', (req, res) => {
      res.render('login');
 });
 
-router.get('/list', (req, res) => {
-     if (req.session.logged_in) {
-          res.redirect('/');
-          return;
+/**
+ * This route will retrieve the recipes and pass them over to the list handlebars
+ */
+router.get('/list', withAuth, async (req, res) => {
+
+     const dbData = await Recipe.findAll({
+          include: { all: true, nested: true },
+          attributes: { exclude: ['instructions'] },
+          order: [["name", "ASC"]],
+     });
+
+     // This will serialize the data prior to send to handlebar. We are using list 
+     // in this case as we are dealing with a bunch of records. 
+     const handlebarData = dbData.map((list) => list.get({ plain: true }));
+
+     if (handlebarData.length != 0) {
+          res.render('recipelist', {
+               handlebarData,
+               logged_in: req.session.logged_in,
+               userid: req.session.userid,
+               user_name: req.session.user_name,
+          });
+          
+          notifier.notify({
+               title: "Cravings",
+               message: "Hope you find your recipe!"
+          });
      }
 
-     res.render('recipelist');
 });
 
 /**
