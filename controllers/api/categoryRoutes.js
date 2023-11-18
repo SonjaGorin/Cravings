@@ -9,7 +9,11 @@ router.get("/", async (req, res) => {
           required: true
       }
       });
+      if (categoryData) {
       res.status(200).json(categoryData);
+      } else {
+        return res.status(404).json(err);
+      }
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
