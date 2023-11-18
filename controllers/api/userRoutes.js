@@ -96,7 +96,7 @@ router.post("/validate", async (req, res) => {
   }
 });
 
-router.get("/get", async (req, res) => {
+router.get("/members", async (req, res) => {
   try {
     const userData = await Users.findAll();
     res.status(200).json(userData);
