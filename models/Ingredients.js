@@ -31,7 +31,7 @@ Ingredients.init(
                allowNull: false,
           },
           unit: {
-               type: DataTypes.INTEGER,
+               type: DataTypes.STRING(25),
                allowNull: false,
           },
           measurement: {
