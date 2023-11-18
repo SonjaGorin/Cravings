@@ -9,7 +9,7 @@
  * Date : 11/14/2023 5:50:29 PM
  *******************************************************************/
 const router = require("express").Router();
-const { Users } = require("../../models");
+const { Users, Recipe } = require("../../models");
 
 router.post("/register", async (req, res) => {
   try {
@@ -96,6 +96,8 @@ router.post("/validate", async (req, res) => {
   }
 });
 
+
+
 router.get("/members", async (req, res) => {
   try {
     const userData = await Users.findAll();
@@ -105,5 +107,21 @@ router.get("/members", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
+router.get("/:id", async (req, res) => {
+  try {
+    const userData = await Users.findByPk(req.params.id, {
+      include: [
+        {model: Recipe}
+      ]
+    });
+    res.status(200).json(userData);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 
 module.exports = router;

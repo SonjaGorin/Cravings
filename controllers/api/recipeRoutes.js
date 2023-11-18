@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const { Recipe, Category, Users } = require("../../models");
 
+
+
 router.get("/", async (req, res) => {
   try {
     const recipeData = await Recipe.findAll({
@@ -21,5 +23,9 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
+
+
 
 module.exports = router;

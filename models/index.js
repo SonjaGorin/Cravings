@@ -22,6 +22,12 @@ Recipe.belongsTo(Category, {
      foreignKey: "category_id"
 });
 
+
+Users.hasMany(Recipe, {
+     foreignKey: "user_id"
+});
+
+
 Recipe.belongsTo(Users, {
      foreignKey: "category_id"
 });
