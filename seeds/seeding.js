@@ -11,7 +11,7 @@
 const { Users, Category } = require('../models'); //Seeding tables using bulkCreate
 const messages = require("../utils/formatter");
 const dic = require("../db/queries"); // Collection of SQL queries
-const connection = require("../config/newdb");
+const dbConnect = require("../config/newdb");
 
 // Seeding files - array of components
 const userData = require('./userData.json');
@@ -29,7 +29,7 @@ const fs = require("fs");
  * @returns true/false
  */
 async function executeSQL(value) {
-     const connection = await connection.connectmysql(process.env.DB_NAME); // Get connection to database
+     const connection = await dbConnect.connectmysql(process.env.DB_NAME); // Get connection to database
 
      try {
           for (let x = 0; x <= value.length - 1; x++) {
@@ -62,31 +62,28 @@ exports.seedAll = async () => {
      await Users.bulkCreate(userData, { individualHooks: true, returning: true, });
      messages.msg(dic.messages.userseeded, null, null, 80);
 
-     // This will never be true, which means we are not activating this for now
-     if (true === false) {
-          // The fs.readFileSync() method is an inbuilt application programming interface of 
-          // the fs module which is used to read the file and return its content. 
-          // https://www.geeksforgeeks.org/node-js-fs-readfilesync-method/
-          let postsData = fs.readFileSync(path.resolve(__dirname, '../db/scripts/postdata.sql'), 'utf-8');
+     // The fs.readFileSync() method is an inbuilt application programming interface of 
+     // the fs module which is used to read the file and return its content. 
+     // https://www.geeksforgeeks.org/node-js-fs-readfilesync-method/
+     let postsData = fs.readFileSync(path.resolve(__dirname, './recipeData.sql'), 'utf-8');
 
-          // Import data directly from database. This uses a connection using MySQL npm package to 
-          // connect database. The sql script needs to be parsed to avoid errors in syntax.
-          // Important note: not all commands are supported, for example "use {database}" is not recognize
-          parsedSQL = messages.parseSqlFile(postsData);
+     // Import data directly from database. This uses a connection using MySQL npm package to 
+     // connect database. The sql script needs to be parsed to avoid errors in syntax.
+     // Important note: not all commands are supported, for example "use {database}" is not recognize
+     parsedSQL = messages.parseSqlFile(postsData);
 
-          try {
-               const response = await executeSQL(parsedSQL); // Process SQL Statements
-               if (response) {
-                    messages.msg(dic.messages.postsseeded, null, null, 80);
+     try {
+          const response = await executeSQL(parsedSQL); // Process SQL Statements
+          if (response) {
+               messages.msg(dic.messages.postsseeded, null, null, 80);
 
-                    // Retrieve next file: testing data for comments.
-                    postsData = fs.readFileSync(path.resolve(__dirname, '../db/scripts/populateComments.sql'), 'utf-8');
-                    parsedSQL = messages.parseSqlFile(postsData)
-                    await executeSQL(parsedSQL); // Process SQL Statements
-               }
-
-          } catch (error) {
-               console.log(dic.messages.customseedingfailed + ` Error: ${error.stack}`);
+               // Retrieve next file: testing data for comments.
+               postsData = fs.readFileSync(path.resolve(__dirname, './ingredietsData.sql'), 'utf-8');
+               parsedSQL = messages.parseSqlFile(postsData)
+               await executeSQL(parsedSQL); // Process SQL Statements
           }
+
+     } catch (error) {
+          console.log(dic.messages.customseedingfailed + ` Error: ${error.stack}`);
      }
 };

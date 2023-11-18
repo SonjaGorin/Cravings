@@ -30,7 +30,7 @@ const messages = {
      commentsseeded: chalk.bgGreen("Comments table has been seeded with testing data"),
      categoriesseeded: chalk.bgGreen("Category table has been seeded"),
      listeningdata: chalk.bgGreen('----- LISTENING PLEASE GO TO A BROWSER TO ACCESS DATA -----'),
-     createdatabase: `There are missing tables in the database! Synchronize database.`,
+     createdatabase: `Forcing update tables in the database! Synchronize database.`,
      registernot: `You cannot register! It looks like you are already signed in!`
 }
 module.exports = { sql, messages };

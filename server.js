@@ -84,16 +84,10 @@ process.stdout.write("\x1Bc");
 messages.figletMsg("Carleton U");
 messages.figletMsg("Recipies Cravings");
 
-// Custom validation to determine whether database contains all tables required 
-// if not then it will create.
-initializedatabase.validateDB(process.env.DB_NAME)
-     .then((data) => {
+sequelize.sync({ force: false }).then(() => {
+     app.listen(PORT, () => {
 
-          // The validate whether the database contains all the tables required 
-          // in case there aren't the same number of tables require it forces to 
-          // sync database using the models and seeds them
-          if (data.created === true && data.data === false) {
-
+          if (process.env.DB_SEED === "YES") {
                // Make sure we have initial data since database was deemed not valid
                sequelize.sync({ force: true })
                     .then(() => {
@@ -110,10 +104,9 @@ initializedatabase.validateDB(process.env.DB_NAME)
                          }
 
                     });
-          } else {
-               // This will display a message on terminal
-               messages.apiendpoints();
-               app.listen(PORT);
-          }
 
+          }
+          messages.apiendpoints();
      });
+
+});
