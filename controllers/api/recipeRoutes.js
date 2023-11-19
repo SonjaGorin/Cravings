@@ -26,6 +26,32 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const recipeData = await Recipe.findByPk(req.params.id, {
+      include: [
+        {
+          model: Category,
+          attributes: ["id"],
+        },
+        {
+          model: Users,
+          attribute: ["id"],
+        },
+      ],
+    });
+    if (recipeData) {
+      res.status(200).json(recipeData);
+    } else {
+      return res.status(404).json(err);
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+
 router.delete("/:id", async (req, res) => {
   try {
     const delId = await Recipe.destroy({
