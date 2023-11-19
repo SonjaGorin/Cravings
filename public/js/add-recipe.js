@@ -1,15 +1,17 @@
-const newRecipeFormHandler = async (event) => {
+const createRecipe = async (event) => {
     event.preventDefault();
   
     const recipeName = document.querySelector("#add-recipe-name-input").value;
     const preparationInstructions = document.querySelector("#add-post-content-input").value;
+    const categoryId = document.querySelector("#category-id").value;
   
     const response = await fetch("/api/recipes", {
         method: "POST",
         body: JSON.stringify({
             name: recipeName,
             instructions: preparationInstructions,
-            ingredients: ingredients()
+            ingredients: ingredients(),
+            category_id: categoryId,
         }),
         headers: {"Content-Type": "application/json"}
     });
@@ -23,7 +25,7 @@ const newRecipeFormHandler = async (event) => {
   
 document
     .querySelector(".add-recipe-form")
-    .addEventListener("submit", newRecipeFormHandler);
+    .addEventListener("submit", createRecipe);
 
 const ingredientsSectionEl = document.querySelector(".ingredients-section")
 
