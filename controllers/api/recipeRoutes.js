@@ -71,6 +71,9 @@ router.delete("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
+
+    const ingredientDetails = req.body.ingredients;
+
     const newRecipe = await Recipe.create(
      
       {
@@ -78,24 +81,29 @@ router.post("/", async (req, res) => {
         instructions: req.body.instructions,
         category_id: req.body.category_id,
         user_id: req.body.user_id,
-        ingredients: [
-        {
-          ingredient: req.body.ingredients.ingredient,
-          measurement:req.body.ingredients.measurement,
-          unit: req.body.ingredients.unit
-        }
-        ]
       },
       {
         include: [Ingredients]
       }
-      
     );
+
+      if (ingredientDetails && ingredientDetails.length > 0) {
+        const createdIngredients = await Ingredients.bulkCreate(
+          ingredientDetails.map((ingredient) => ({
+            ingredient: ingredient.ingredient,
+            measurement: ingredient.measurement,
+            unit: ingredient.unit,
+            recipe_id: newRecipe.id,
+          }))
+        );
+      
+        await newRecipe.addIngredients(createdIngredients);
+      }
 
  
 
-    if (newRecipe) {
-      return res.status(201).json(newRecipe);
+    if (newRecipe && createdIngredients) {
+      return res.status(201).json(newRecipe && createdIngredients);
     }
   } catch (err) {
     return res.status(404).json(err);
