@@ -97,6 +97,7 @@ sequelize.sync({ force: false }).then(() => {
                                         // This will display a message on terminal
                                         messages.apiendpoints();
                                         app.listen(PORT);
+                                        process.exit();
                                    });
                          } catch (err) {
                               console.log(err);

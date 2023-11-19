@@ -96,7 +96,7 @@ insert into ingredient (recipe_id,measurement,unit,ingredient) VALUES ((select i
 insert into ingredient (recipe_id,measurement,unit,ingredient) VALUES ((select id from recipe where name='Spicy Shepherds Pie'),'1','cup','shredded cheddar cheese, divided');
 insert into ingredient (recipe_id,measurement,unit,ingredient) VALUES ((select id from recipe where name='Best Ever Potato Soup'),'6','units','bacon strips, diced');
 insert into ingredient (recipe_id,measurement,unit,ingredient) VALUES ((select id from recipe where name='Best Ever Potato Soup'),'3','cups','cubed peeled potatoes');
-insert into ingredient (recipe_id,measurement,unit,ingredient) VALUES ((select id from recipe where name='Best Ever Potato Soup'),'1','small carrot, grated');
+insert into ingredient (recipe_id,measurement,unit,ingredient) VALUES ((select id from recipe where name='Best Ever Potato Soup'),'1','unit','small carrot, grated');
 insert into ingredient (recipe_id,measurement,unit,ingredient) VALUES ((select id from recipe where name='Best Ever Potato Soup'),'1/2','cup','chopped onion');
 insert into ingredient (recipe_id,measurement,unit,ingredient) VALUES ((select id from recipe where name='Best Ever Potato Soup'),'1','tbsp','dried parsley flakes');
 insert into ingredient (recipe_id,measurement,unit,ingredient) VALUES ((select id from recipe where name='Best Ever Potato Soup'),'1/2','tsp','salt');

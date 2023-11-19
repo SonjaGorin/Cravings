@@ -53,7 +53,7 @@ router.get('/list', withAuth, async (req, res) => {
           res.render('recipelist', {
                handlebarData,
                logged_in: req.session.logged_in,
-               userid: req.session.userid,
+               user_id: req.session.user_id,
                user_name: req.session.user_name,
           });
           
