@@ -33,21 +33,21 @@ const addIngredient = () => {
     ingredientNameInputEl.setAttribute("type", "text");
     ingredientNameInputEl.setAttribute("class", "add-ingredient-name-value");
     ingredientNameInputEl.setAttribute("name", "add-ingredient-name");
-    ingredientNameInputEl.textContent = document.querySelector("#add-ingredient-name-input").value
+    ingredientNameInputEl.value = document.querySelector("#add-ingredient-name-input").value
     newIngredients.appendChild(ingredientNameInputEl);
 
     const ingredientMeasurementInputEl = document.createElement("input");
     ingredientMeasurementInputEl.setAttribute("type", "text");
     ingredientMeasurementInputEl.setAttribute("class", "add-ingredient-measurement-value");
     ingredientMeasurementInputEl.setAttribute("name", "add-ingredient-measurement");
-    ingredientMeasurementInputEl.textContent = document.querySelector("#add-ingredient-measurement-input").value
+    ingredientMeasurementInputEl.value = document.querySelector("#add-ingredient-measurement-input").value
     newIngredients.appendChild(ingredientMeasurementInputEl);
 
     const measurementUnitInputEl = document.createElement("input");
     measurementUnitInputEl.setAttribute("type", "text");
     measurementUnitInputEl.setAttribute("class", "add-measurement-unit-value");
     measurementUnitInputEl.setAttribute("name", "add-measurement-unit");
-    measurementUnitInputEl.textContent = document.querySelector("#add-measurement-unit-input").value
+    measurementUnitInputEl.value = document.querySelector("#add-measurement-unit-input").value
     newIngredients.appendChild(measurementUnitInputEl);
 
     ingredientsSectionEl.appendChild(newIngredients);
