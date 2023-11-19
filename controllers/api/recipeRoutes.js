@@ -80,7 +80,7 @@ router.post("/", async (req, res) => {
         name: req.body.name,
         instructions: req.body.instructions,
         category_id: req.body.category_id,
-        user_id: req.body.user_id,
+        user_id: req.session.user_id,
       },
       {
         include: [Ingredients]
