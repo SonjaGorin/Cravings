@@ -51,7 +51,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-
 router.delete("/:id", async (req, res) => {
   try {
     const delId = await Recipe.destroy({
@@ -70,28 +69,38 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-
-router.put('/:id', async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
-  const up =  await Recipe.update(
-   
-    {
-      name: req.body.name,
-      instructions: req.body.instructions
-    },
-    {
-      where: {
-        id: req.params.id
+    const upRec = await Recipe.update(
+      {
+        name: req.body.name,
+        instructions: req.body.instructions,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
       }
+    );
+
+    const upIng = await Ingredients.update(
+      {
+         ingredient: req.body.ingredient,
+         measurement: req.body.measurement,
+         unit: req.body.unit
+      },
+      {
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (upRec && upIng) {
+      return res.status(200).json([upRec, upIng, "hello"]);
     }
-  )
-  if (up) {
-    return res.status(200).json(up)
-  }
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
 
 module.exports = router;
