@@ -30,7 +30,7 @@ Users.hasMany(Recipe, {
 
 
 Recipe.belongsTo(Users, {
-     foreignKey: "category_id"
+     foreignKey: "user_id"
 });
 
 // https://sequelize.org/docs/v6/advanced-association-concepts/creating-with-associations/
