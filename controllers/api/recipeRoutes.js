@@ -69,17 +69,37 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
-
+router.post("/", async (req, res) => {
   try {
-    const newRecipe = await Recipe.create(req.body)
+    const newRecipe = await Recipe.create(
+     
+      {
+        name: req.body.name,
+        instructions: req.body.instructions,
+        category_id: req.body.category_id,
+        user_id: req.body.user_id,
+        ingredients: [
+        {
+          ingredient: req.body.ingredients.ingredient,
+          measurement:req.body.ingredients.measurement,
+          unit: req.body.ingredients.unit
+        }
+        ]
+      },
+      {
+        include: [Ingredients]
+      }
+      
+    );
+
+ 
+
     if (newRecipe) {
-      return res.status(201).json(newRecipe)
+      return res.status(201).json(newRecipe);
     }
   } catch (err) {
-    return res.status(404).json(err)
+    return res.status(404).json(err);
   }
-
 });
 
 router.put("/:id", async (req, res) => {
@@ -98,15 +118,16 @@ router.put("/:id", async (req, res) => {
 
     const upIng = await Ingredients.update(
       {
-         ingredient: req.body.ingredient,
-         measurement: req.body.measurement,
-         unit: req.body.unit
+        ingredient: req.body.ingredient,
+        measurement: req.body.measurement,
+        unit: req.body.unit,
       },
       {
-      where: {
-        id: req.params.id,
-      },
-    });
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
 
     if (upRec && upIng) {
       return res.status(200).json([upRec, upIng, "hello"]);
