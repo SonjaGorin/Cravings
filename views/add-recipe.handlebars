@@ -5,12 +5,22 @@
         <input type="text" id="add-recipe-name-input" name="add-recipe-name"/>
 
         <h4>Ingredients</h4>
+
         <label for="add-recipe-ingredient">Ingredients</label>
         <label for="add-ingredient-measurement">Measurement</label>
         <label for="add-measurement-unit">Unit</label>
-        {{!-- <input type="text" id="add-ingredient-name-input" name="add-ingredient-name"/>
-        <input type="text" id="add-ingredient-measurement-input" name="add-ingredient-measurement"/>
-        <input type="text" id="add-measurement-unit-input" name="add-measurement-unit"/> --}}
+
+        <section class="ingredients-section">
+        </section>
+
+        <section class="ingredients-inputs-section">
+            <div>
+                <input type="text" id="add-ingredient-name-input" name="add-ingredient-name"/>
+                <input type="text" id="add-ingredient-measurement-input" name="add-ingredient-measurement"/>
+                <input type="text" id="add-measurement-unit-input" name="add-measurement-unit"/>
+                <button  id="add-ingredient-button">+</button>
+            </div>
+        </section>
 
         <label id="instructions-label" for="add-recipe-instructions">Preparation Instructions</label>
         <input type="text" id="add-post-content-input" name="add-post-content"/>
