@@ -73,19 +73,11 @@ router.delete("/:id", async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-  const up =  await Recipe.update({
-    include: [{
-        model : Ingredients,
-        attributes: ["ingredient", "measurement", "unit"]
-    }]
-  },
+  const up =  await Recipe.update(
+   
     {
       name: req.body.name,
-      instructions: req.body.instructions,
-      ingredient: req.body.ingredient,
-      measurement: req.body.measurement,
-      unit: req.body.unit
-
+      instructions: req.body.instructions
     },
     {
       where: {
