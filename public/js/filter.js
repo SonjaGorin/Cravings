@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           // Jacob is to provide this API/Endpoint. I don't know how he will call it, this will do for now but 
           // it does not work. It is on stand-by
-          const response = await fetch('api/lists/categories', {
+          const response = await fetch('api/categories', {
                method: 'GET',
                headers: { 'Content-Type': 'application/json' },
           });
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
      // Entry point start process
      function initialize() {
 
-          // loadCategory();
+          loadCategory();
           loadMembers()
 
           selectedcat.addEventListener("change", filterCategory);
