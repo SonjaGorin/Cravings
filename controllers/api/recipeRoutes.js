@@ -69,6 +69,19 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+router.post('/', async (req, res) => {
+
+  try {
+    const newRecipe = await Recipe.create(req.body)
+    if (newRecipe) {
+      return res.status(201).json(newRecipe)
+    }
+  } catch (err) {
+    return res.status(404).json(err)
+  }
+
+});
+
 router.put("/:id", async (req, res) => {
   try {
     const upRec = await Recipe.update(
