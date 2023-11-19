@@ -8,10 +8,10 @@
  * 
  * Date : 11/14/2023 5:50:29 PM
  *******************************************************************/
-const Users = require("./User");
-const Category = require("./Category");
-const Recipe = require("./Recipe");
-const Ingredients = require("./Ingredients");
+const Users = require("./user");
+const Category = require("./category");
+const Recipe = require("./recipe");
+const Ingredients = require("./ingredients");
 
 
 Category.hasMany(Recipe, {
@@ -34,8 +34,11 @@ Recipe.belongsTo(Users, {
 });
 
 Recipe.hasMany(Ingredients,{
+
      foreignKey: "recipe_id",
      onDelete: 'CASCADE'
+
+
 })
 
 module.exports = { Users, Category, Recipe, Ingredients };
