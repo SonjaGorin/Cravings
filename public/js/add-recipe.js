@@ -29,12 +29,12 @@ const ingredientsSectionEl = document.querySelector(".ingredients-section")
 
 const ingredients = () => {
     const result = [];
-    for (let ingredient of document.querySelector(".added-ingredient")) {
+    [...document.querySelectorAll(".added-ingredient")].forEach((ingredient) => {
         const name = ingredient.querySelector(".add-ingredient-name-value").value;
         const measure = ingredient.querySelector(".add-ingredient-measurement-value").value;
         const unit = ingredient.querySelector(".add-measurement-unit-value").value;
-        result.push({name, measure, unit})
-    }
+        result.push({name, measure, unit});
+    })
     return result
 }
 
