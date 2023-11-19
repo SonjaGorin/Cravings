@@ -8,7 +8,8 @@ const newRecipeFormHandler = async (event) => {
         method: "POST",
         body: JSON.stringify({
             name: recipeName,
-            instructions: preparationInstructions
+            instructions: preparationInstructions,
+            ingredients: ingredients()
         }),
         headers: {"Content-Type": "application/json"}
     });
@@ -26,8 +27,20 @@ document
 
 const ingredientsSectionEl = document.querySelector(".ingredients-section")
 
+const ingredients = () => {
+    const result = [];
+    [...document.querySelectorAll(".added-ingredient")].forEach((ingredient) => {
+        const name = ingredient.querySelector(".add-ingredient-name-value").value;
+        const measure = ingredient.querySelector(".add-ingredient-measurement-value").value;
+        const unit = ingredient.querySelector(".add-measurement-unit-value").value;
+        result.push({name, measure, unit});
+    })
+    return result
+}
+
 const addIngredient = () => {
     const newIngredients = document.createElement("div");
+    newIngredients.setAttribute("class", "added-ingredient")
 
     const ingredientNameInputEl = document.createElement("input");
     ingredientNameInputEl.setAttribute("type", "text");
