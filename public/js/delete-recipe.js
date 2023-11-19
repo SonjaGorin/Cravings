@@ -6,12 +6,6 @@ const deleteRecipe = async (event) => {
       
     const response = await fetch(`/api/recipes/${recipeId}`, {
         method: "DELETE",
-        body: JSON.stringify({
-            recipe_id: recipeId
-        }),
-        headers: {
-            "Content-Type": "application/json"
-        }
     });
       
     if (response.ok) {
