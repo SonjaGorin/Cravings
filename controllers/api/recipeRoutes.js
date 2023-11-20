@@ -90,8 +90,8 @@ router.post("/", async (req, res) => {
       if (ingredientDetails && ingredientDetails.length > 0) {
         const createdIngredients = await Ingredients.bulkCreate(
           ingredientDetails.map((ingredient) => ({
-            ingredient: ingredient.ingredient,
-            measurement: ingredient.measurement,
+            ingredient: ingredient.name,
+            measurement: ingredient.measure,
             unit: ingredient.unit,
             recipe_id: newRecipe.id,
           }))
@@ -102,8 +102,8 @@ router.post("/", async (req, res) => {
 
  
 
-    if (newRecipe && createdIngredients) {
-      return res.status(201).json(newRecipe && createdIngredients);
+    if (newRecipe) {
+      return res.status(201).json(newRecipe);
     }
   } catch (err) {
     return res.status(404).json(err);

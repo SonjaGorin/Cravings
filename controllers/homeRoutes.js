@@ -113,7 +113,7 @@ router.get('/register', (req, res) => {
      res.render('register');
 })
 
-router.get('/addrecipe', async (req, res) => {
+router.get('/create', async (req, res) => {
      
      try {
           const categoryData = await Category.findAll();
@@ -132,7 +132,61 @@ router.get('/addrecipe', async (req, res) => {
      res.status(500).json(err);
    }
 
-})
+});
+
+router.get('/view', async (req, res) => {
+     
+     try {
+
+          const recipeData = await Recipe.findByPk(req.params.id, {
+               include: [
+                    {
+                      model: Ingredients
+                    }
+               ]
+          });
+          
+
+     
+     if (req.session.logged_in) {
+          res.render('recipe', {
+          recipeData
+     });
+     }
+}  catch (err) {
+     console.log(err);
+     res.status(500).json(err);
+   }
+
+});
+
+
+
+router.get('/edit', async (req, res) => {
+     
+     try {
+
+          const recipeData = await Recipe.findByPk(req.params.id, {
+               include: [
+                    {
+                      model: Ingredients
+                    }
+               ]
+          });
+          
+
+     
+     if (req.session.logged_in) {
+          res.render('update-delete-recipe', {
+          recipeData
+     });
+     }
+}  catch (err) {
+     console.log(err);
+     res.status(500).json(err);
+   }
+
+});
 
 
 module.exports = router;

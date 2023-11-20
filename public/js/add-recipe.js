@@ -11,7 +11,7 @@ const createRecipe = async (event) => {
             name: recipeName,
             instructions: preparationInstructions,
             ingredients: ingredients(),
-            category_id: categoryId,
+            category_id: categoryId
         }),
         headers: {"Content-Type": "application/json"}
     });
