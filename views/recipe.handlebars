@@ -1,10 +1,25 @@
-<section>
-    <h2><a href="{{ id }}"></a>{{ name }}</a></h2>
-    <h3>Ingredients</h3>
-    <p>
-        {{ ingredients.ingredient }} {{ ingredients.measurement }} {{ ingredients.unit }}
-    </p>
-    <p>
-        {{ instruction }}
-    </p>
+<section class="view-recipe-card">
+    <h2 id="view-recipe-title">{{ recipe.name }}</h2>
+
+    <section>
+        <h3>{{ recipe.category.name }}</h3>
+    </section>
+
+    <section>
+        <h3>Ingredients</h3>
+        <ul>
+            {{#each recipe.ingredients as |ingredient| }}
+                <li>{{ingredient.ingredient}} {{ingredient.measurement}} {{ingredient.unit}}</li>
+            {{/each}}
+        </ul>
+    </section>
+
+    <section>
+        <h3>Preparation Instructions:</h3>
+        {{{ recipe.instructions }}}
+    </section>
+
+    {{#if isEditable}}
+        <button id="edit-button" type="click">Edit</button>
+    {{/if}}
 </section>
