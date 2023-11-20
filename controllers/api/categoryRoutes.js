@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Recipe, Category } = require("../../models");
+const { Recipe, Category, Ingredients } = require("../../models");
 
 router.get("/", async (req, res) => {
     try {
@@ -21,4 +21,8 @@ router.get("/", async (req, res) => {
   });
   
   module.exports = router;
+
+
+
+
   
