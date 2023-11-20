@@ -85,7 +85,7 @@ section {
      padding: 0;
      display: flex;
      list-style: none;
-     align-items: center;
+     align-items: start;
 }
 
 .navbar li {
@@ -127,6 +127,10 @@ section {
 /*--------------------------------------------------------------
 * Cravings custom stylings
 --------------------------------------------------------------*/
+
+.noleft {
+     padding-left: 0px;
+}
 
 @media (min-width: 1025px) {
      .h-custom-2 {
