@@ -113,6 +113,27 @@ router.get('/register', (req, res) => {
      res.render('register');
 })
 
+router.get('/addrecipe', async (req, res) => {
+     
+     try {
+          const categoryData = await Category.findAll();
+
+          const categories = categoryData.map(data => data.get({ plain: true }))
+
+
+     
+     if (req.session.logged_in) {
+          res.render('add-recipe', {
+               categories
+          });
+     }
+}  catch (err) {
+     console.log(err);
+     res.status(500).json(err);
+   }
+
+})
+
 
 
 
