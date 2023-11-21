@@ -12,7 +12,7 @@ const editRecipe = async (event) => {
         method: "PUT",
         body: JSON.stringify({
             name: recipeName,
-            category_id: 10,
+            category_id: categoryId,
             instructions: recipeInstructions,
             ingredients: ingredients(),
         }),

@@ -178,9 +178,7 @@ router.get('/edit/:id', async (req, res) => {
                     {
                       model: Ingredients
                     },
-                    {
-                         model: Category
-                    }
+
 
                ]
           });
@@ -188,14 +186,11 @@ router.get('/edit/:id', async (req, res) => {
           
           const recipe = recipeData.get({ plain: true })
 
-          const categoryData = await Category.findAll();
-          const categories = categoryData.map(data => data.get({ plain: true }))
-          console.log({
-               recipe, categories
-          });
+
+          
      if (req.session.logged_in) {
           res.render('update-delete-recipe', {
-          recipe, categories
+          recipe
      });
      }
 }  catch (err) {
