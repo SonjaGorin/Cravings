@@ -14,6 +14,10 @@ const withAuth = require("../utils/auth");
 const dic = require("../db/queries"); // Collection of SQL queries
 const notifier = require('node-notifier');
 
+router.get('/template', (req,res) =>{
+     res.render('template');
+})
+
 router.get('/', async (req, res) => {
      res.render('hero', {
           logged_in: req.session.logged_in,
