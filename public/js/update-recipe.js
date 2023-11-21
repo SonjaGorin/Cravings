@@ -8,7 +8,7 @@ const editRecipe = async (event) => {
     const recipeId = window.location.toString().split("/")[
         window.location.toString().split("/").length - 1];
       
-    const response = await fetch(`/api/view/${recipeId}`, {
+    const response = await fetch(`/api/recipes/${recipeId}`, {
         method: "PUT",
         body: JSON.stringify({
             name: recipeName,
@@ -22,7 +22,7 @@ const editRecipe = async (event) => {
     });
       
     if (response.ok) {
-        document.location.replace("/dashboard");
+        document.location.replace("/memberlist");
     } else {
         alert(response.statusText);
     }
@@ -40,7 +40,7 @@ const ingredients = () => {
 }
 
 document
-    .querySelector(".edit-recipe-form")
+    .querySelector("#update-button")
     .addEventListener("submit", editRecipe);
 
     

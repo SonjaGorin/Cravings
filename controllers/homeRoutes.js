@@ -135,25 +135,24 @@ router.get('/create', async (req, res) => {
 });
 
 router.get('/view/:id', async (req, res) => {
-     
      try {
-
           const recipeData = await Recipe.findByPk(req.params.id, {
                include: [
                     {
                       model: Ingredients
+                    },
+                    {
+                         model: Category
                     }
                ]
           });
           
           const recipe = recipeData.get({ plain: true });
 
+         
+
           const isEditable = recipeData.user_id == req.session.user_id
 
-
-
-
-     
      if (req.session.logged_in) {
           res.render('recipe', {
           recipe, isEditable
@@ -178,15 +177,17 @@ router.get('/edit/:id', async (req, res) => {
                include: [
                     {
                       model: Ingredients
-                    }
+                    },
+
+
                ]
           });
+
           
           const recipe = recipeData.get({ plain: true })
 
 
-      
-     
+          
      if (req.session.logged_in) {
           res.render('update-delete-recipe', {
           recipe
