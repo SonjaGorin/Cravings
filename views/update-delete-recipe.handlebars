@@ -1,37 +1,44 @@
-<section class="create-recipe-card">
-    <h3 id="create-recipe-title">Edit Recipe</h3>
-    <form class="add-recipe-form">
+<section class="edit-recipe-card">
+    <h3 id="edit-recipe-title">Edit Recipe</h3>
+    <form class="edit-recipe-form">
 
         <select>
             <option>Choose Category</option>
-            {{#each categories}}
-            <option id="category-id" value="{{ id }}">{{ name }}</option>
+            {{#each recipe.categories as |category|}}
+            <option id="category-id" value={{ category.id }}>{{ category.name }}</option>
             {{/each}}
         </select>
 
-        <label id="recipe-name-label" for="add-recipe-name">Recipe Name</label>
-        <input type="text" id="add-recipe-name-input" name="add-recipe-name"/>
+        <label id="recipe-name-label" for="edit-recipe-name">Recipe Name</label>
+        <input type="text" id="edit-recipe-name-input" name="edit-recipe-name" value={{ recipe.name }}/>
 
         <h4>Ingredients</h4>
 
-        <label for="add-recipe-ingredient">Ingredients</label>
-        <label for="add-ingredient-measurement">Measurement</label>
-        <label for="add-measurement-unit">Unit</label>
+        <label for="edit-recipe-ingredient">Ingredients</label>
+        <label for="edit-ingredient-measurement">Measurement</label>
+        <label for="edit-measurement-unit">Unit</label>
 
         <section class="ingredients-section">
+            {{#each recipe.ingredients as |ingredient| }}
+                <div>
+                    <input value={{ ingredient.ingredient }} />
+                    <input value={{ ingredient.measurement }} />
+                    <input value={{ ingredient.unit }} />
+                </div>
+            {{/each}}
         </section>
 
         <section class="ingredients-inputs-section">
-            <div>
-                <input type="text" id="add-ingredient-name-input" name="add-ingredient-name"/>
-                <input type="text" id="add-ingredient-measurement-input" name="add-ingredient-measurement"/>
-                <input type="text" id="add-measurement-unit-input" name="add-measurement-unit"/>
+            <div class="edit-ingredient">
+                <input type="text" class="edit-ingredient-name-value" id="add-ingredient-name-input" name="add-ingredient-name"/>
+                <input type="text" class="edit-ingredient-measurement-value" id="add-ingredient-measurement-input" name="add-ingredient-measurement"/>
+                <input type="text" class="edit-measurement-unit-value" id="add-measurement-unit-input" name="add-measurement-unit"/>
                 <button type="button" id="add-ingredient-button">+</button>
             </div>
         </section>
 
-        <label id="instructions-label" for="add-recipe-instructions">Preparation Instructions</label>
-        <input type="text" id="add-post-content-input" name="add-post-content"/>
+        <label id="instructions-label" for="edit-recipe-instructions">Preparation Instructions</label>
+        <input type="text" id="edit-post-content-input" name="edit-post-content" value={{ recipe.instructions }}/>
 
         <button id="update-button" type="submit">Update Recipe</button>
         <button id="delete-button" type="submit">Delete Recipe</button>

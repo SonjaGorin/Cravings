@@ -55,6 +55,7 @@ router.get('/list', withAuth, async (req, res) => {
                logged_in: req.session.logged_in,
                user_id: req.session.user_id,
                user_name: req.session.user_name,
+               user_all: true,
           });
           
           notifier.notify({
@@ -73,16 +74,7 @@ router.get('/memberlist', withAuth, async (req, res) => {
 
      const dbData = await Recipe.findAll({
           where: { user_id: req.session.user_id },
-          include: [
-               {
-                 model: Category,
-                 attributes: ["id"],
-               },
-               {
-                 model: Users,
-                 attribute: ["id"],
-               },
-             ],          
+          include: { all: true, nested: true },
           attributes: { exclude: ['instructions'] },
           order: [["name", "ASC"]],
      });
@@ -97,6 +89,7 @@ router.get('/memberlist', withAuth, async (req, res) => {
                logged_in: req.session.logged_in,
                user_id: req.session.user_id,
                user_name: req.session.user_name,
+               user_all: false,
           });
           
           notifier.notify({
@@ -201,8 +194,6 @@ router.get('/edit/:id', async (req, res) => {
    }
 
 });
-
-
 
 
 module.exports = router;

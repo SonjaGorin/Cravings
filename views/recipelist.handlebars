@@ -1,4 +1,4 @@
-{{log handlebarData}}
+{{log user_all}}
 <section class="h-75">
      <div class="container-fluid">
 
@@ -9,11 +9,13 @@
 
                     </select>
                </div>
+               {{#if user_all}}
                <div class="col-xs-6 col-md-3 col-xl-2 text-black mb-2">
                     <select id="memberslist" class="h-custom-2 ms-xl-4 form-select form-control-lg"
                          aria-label="Select a member">
                     </select>
                </div>
+               {{/if}}
           </div>
 
           <div class="row justify-content-center">
@@ -34,7 +36,7 @@
                                    <th scope="row">{{item.id}}</th>
                                    <td> <a href="/view/{{item.id}}">{{item.name}}</a></td>
                                    <td>{{item.category.name}}</td>
-                                   <td>{{item.date_registered}}</td>
+                                   <td>{{dateFormatted item.date_registered}}</td>
                                    <td>{{item.user.name}}</td>
                               </tr>
                               {{/each}}
