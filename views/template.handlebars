@@ -1,0 +1,77 @@
+<section class="h-75">
+
+     <div class="container">
+          <div class="row">
+               <div class="col-md-6 text-black">
+                    <div class="mb-3">
+                         <label for="recipename" class="form-label">Recipe Name</label>
+                         <input class="form-control" id="recipename" type="text" placeholder="Default input"
+                              aria-label="default input example">
+                    </div>
+               </div>
+               <div class="col-md-4 text-black">
+                    <div class="mb-3">
+                         <label for="catselect" class="form-label">Categories</label>
+                         <select name="" id="catselect" class="h-custom-2 form-select form-control-sm">
+                              <option>Choose Category</option>
+                              {{#each categories}}
+                              <option id="category-id" value={{ id }}>{{ name }}</option>
+                              {{/each}}
+                         </select>
+                    </div>
+               </div>
+          </div>
+          <div class="row mb-2">
+               <div class="col-md-10">
+                    <label for="preparation" class="form-label">Preparation Instructions</label>
+                    <textarea class="form-control" id="preparation" rows="5"></textarea>
+               </div>
+          </div>
+          <div class="row">
+               <div class="col-md-10">
+                    <div class="row">
+                         <div class="col-md-6">
+                              <p>Ingredient</p>
+                         </div>
+                         <div class="col-md-3">
+                              <p>Measurement</p>
+                         </div>
+                         <div class="col-md-2">
+                              <p>Unit</p>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="row">
+               <div class="col-md-10">
+                    <div class="row">
+                         <div class="col-md-6">
+                              <input class="form-control" type="text" id="add-ingredient-name-input" name="add-ingredient-name" />
+                         </div>
+                         <div class="col-md-3">
+                              <input class="form-control" type="text" id="add-ingredient-measurement-input"
+                    name="add-ingredient-measurement" />
+                         </div>
+                         <div class="col-md-2">
+                              <input class="form-control" type="text" id="add-measurement-unit-input" name="add-measurement-unit" />
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="col-md-10">
+               <div class="ingredients-inputs-section">
+
+
+
+                    <button type="button" id="add-ingredient-button">+</button>
+               </div>
+
+          </div>
+     </div>
+
+     </div>
+</section>
+
+<script src="/js/create.js"></script>
