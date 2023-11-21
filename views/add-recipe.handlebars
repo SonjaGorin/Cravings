@@ -19,7 +19,7 @@
                <div class="col-md-4 text-black">
                     <div class="mb-3">
                          <label for="catselect" class="form-label">Categories</label>
-                         <select name="" id="catselect" class="h-custom-2 form-select form-control-sm">
+                         <select name="" id="category-id" class="h-custom-2 form-select form-control-sm">
                               <option>Choose Category</option>
                               {{#each categories}}
                               <option id="category-id" value={{ this.id }}>{{ this.name }}</option>
@@ -35,10 +35,10 @@
                          <div class="col-md-6">
                               <p>Ingredient</p>
                          </div>
-                         <div class="col-md-3 text-center">
+                         <div class="col-md-3">
                               <p>Measurement</p>
                          </div>
-                         <div class="col-md-2 text-center">
+                         <div class="col-md-2">
                               <p>Unit</p>
                          </div>
                     </div>
@@ -77,7 +77,7 @@
                     </div>
                </div>
           </div>
-
+            <hr />
 
 
           <!-- Section Preparations -->
