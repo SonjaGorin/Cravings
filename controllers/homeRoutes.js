@@ -138,7 +138,7 @@ router.get('/create', async (req, res) => {
 
 });
 
-router.get('/view', async (req, res) => {
+router.get('/view/:id', async (req, res) => {
      
      try {
 
@@ -150,11 +150,14 @@ router.get('/view', async (req, res) => {
                ]
           });
           
+          const recipe = recipeData.get({ plain: true });
+
+
 
      
      if (req.session.logged_in) {
           res.render('recipe', {
-          recipeData
+          recipe
      });
      }
 }  catch (err) {
@@ -166,7 +169,7 @@ router.get('/view', async (req, res) => {
 
 
 
-router.get('/edit', async (req, res) => {
+router.get('/edit/:id', async (req, res) => {
      
      try {
 
@@ -178,11 +181,13 @@ router.get('/edit', async (req, res) => {
                ]
           });
           
+          const data = recipeData.get({ plain: true })
 
+      
      
      if (req.session.logged_in) {
           res.render('update-delete-recipe', {
-          recipeData
+          data
      });
      }
 }  catch (err) {
