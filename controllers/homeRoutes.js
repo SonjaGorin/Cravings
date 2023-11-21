@@ -149,6 +149,8 @@ router.get('/view/:id', async (req, res) => {
           
           const recipe = recipeData.get({ plain: true });
 
+         
+
           const isEditable = recipeData.user_id == req.session.user_id
 
      if (req.session.logged_in) {
@@ -182,12 +184,18 @@ router.get('/edit/:id', async (req, res) => {
 
                ]
           });
+
           
           const recipe = recipeData.get({ plain: true })
-          
+
+          const categoryData = await Category.findAll();
+          const categories = categoryData.map(data => data.get({ plain: true }))
+          console.log({
+               recipe, categories
+          });
      if (req.session.logged_in) {
           res.render('update-delete-recipe', {
-          recipe
+          recipe, categories
      });
      }
 }  catch (err) {
