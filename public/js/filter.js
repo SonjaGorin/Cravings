@@ -117,12 +117,17 @@ document.addEventListener("DOMContentLoaded", function () {
                // the options dynamically
                let dropdown = document.getElementById("memberslist");
 
-               for (var i = 0; i < data.length; i++) {
-                    let optionitem = document.createElement('option');
-                    optionitem.value = data[i].id;
-                    optionitem.innerHTML = data[i].name;
-                    optionitem.setAttribute('id', 'memberId' + data[i].id)
-                    dropdown.appendChild(optionitem);
+               // This element may not be present in the DOM - validate before
+               if (dropdown !== null) {
+
+                    for (var i = 0; i < data.length; i++) {
+                         let optionitem = document.createElement('option');
+                         optionitem.value = data[i].id;
+                         optionitem.innerHTML = data[i].name;
+                         optionitem.setAttribute('id', 'memberId' + data[i].id)
+                         dropdown.appendChild(optionitem);
+                    }
+                    
                }
 
           } else {
@@ -134,11 +139,16 @@ document.addEventListener("DOMContentLoaded", function () {
      // Entry point start process
      function initialize() {
 
-          loadCategory();
-          loadMembers()
+          loadCategory(); //Load the categories from api/categories
+          loadMembers() //Load members from api/users/members
 
           selectedcat.addEventListener("change", filterCategory);
-          selectedmem.addEventListener("change", filterMembers);
+
+          // This element may not be present in the DOM so do not initialize otherwise 
+          // we get an error
+          if (selectedmem !== null) {
+               selectedmem.addEventListener("change", filterMembers);
+          }
 
      }
 
