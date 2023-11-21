@@ -2,6 +2,9 @@
 
      <div class="container">
           <div class="row">
+               <h3 class="fw-normal mb-3" style="letter-spacing: 1px;">Create New Recipe</h3>
+          </div>
+          <div class="row">
                <div class="col-md-6 text-black">
                     <div class="mb-3">
                          <label for="recipename" class="form-label">Recipe Name</label>
@@ -21,12 +24,7 @@
                     </div>
                </div>
           </div>
-          <div class="row mb-2">
-               <div class="col-md-10">
-                    <label for="preparation" class="form-label">Preparation Instructions</label>
-                    <textarea class="form-control" id="preparation" rows="5"></textarea>
-               </div>
-          </div>
+          <hr />
           <div class="row">
                <div class="col-md-10">
                     <div class="row">
@@ -34,42 +32,69 @@
                               <p>Ingredient</p>
                          </div>
                          <div class="col-md-3">
-                              <p>Measurement</p>
+                              <p>Measurement text-center</p>
                          </div>
                          <div class="col-md-2">
-                              <p>Unit</p>
+                              <p>Unit text-center</p>
                          </div>
                     </div>
                </div>
           </div>
 
-          <div class="row">
+          <!-- Section Ingredients -->
+          <div class="row mb-2">
                <div class="col-md-10">
                     <div class="row">
                          <div class="col-md-6">
-                              <input class="form-control" type="text" id="add-ingredient-name-input" name="add-ingredient-name" />
+                              <input class="form-control" type="text" id="add-ingredient-name-input"
+                                   name="add-ingredient-name" />
                          </div>
                          <div class="col-md-3">
                               <input class="form-control" type="text" id="add-ingredient-measurement-input"
-                    name="add-ingredient-measurement" />
+                                   name="add-ingredient-measurement" />
                          </div>
                          <div class="col-md-2">
-                              <input class="form-control" type="text" id="add-measurement-unit-input" name="add-measurement-unit" />
+                              <input class="form-control" type="text" id="add-measurement-unit-input"
+                                   name="add-measurement-unit" />
+                         </div>
+                         <div class="col-md-1 ingredients-inputs-section">
+                              <button class="btn wide-button" id="add-ingredient-button"
+                                   style="background-color: #842029;">
+                                   <i class="bi bi-plus-square-dotted" style="color: white"></i>
+                              </button>
                          </div>
                     </div>
                </div>
           </div>
 
-          <div class="col-md-10">
-               <div class="ingredients-inputs-section">
-
-
-
-                    <button type="button" id="add-ingredient-button">+</button>
+          <div class="row mb-1">
+               <div class="col-md-10 ingredients-section"> <!-- Append new ingredient line -->
+                    <div class="row"> <!-- row append to ingredients-section -->
+                         <div class="col-md-6"> <!-- column 6 / append to row -->
+                              <input class="form-control" type="text" id="add-ingredient-name-input"
+                                   name="add-ingredient-name" /> <!-- form control / append to column -->
+                         </div>
+                         <div class="col-md-3"> <!-- column 3 / append to row -->
+                              <input class="form-control" type="text" id="add-ingredient-measurement-input"
+                                   name="add-ingredient-measurement" /> <!-- form control / append to column -->
+                         </div>
+                         <div class="col-md-2"> <!-- column 2 / append to row -->
+                              <input class="form-control" type="text" id="add-measurement-unit-input"
+                                   name="add-measurement-unit" /> <!-- form control / append to column -->
+                         </div>
+                    </div>
                </div>
-
           </div>
-     </div>
+
+          <!-- Section Preparations -->
+          <div class="row mt-3">
+               <div class="col-md-10">
+                    <label for="preparation" class="form-label">Preparation Instructions</label>
+                    <textarea class="form-control" id="preparation" rows="5"></textarea>
+                    <button class="btn mr-1 mt-1" style="background-color: #842029;color:white;"><i class="bi bi-apple"></i> Create</button>
+               </div>
+               
+          </div>
 
      </div>
 </section>
