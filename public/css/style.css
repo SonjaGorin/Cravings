@@ -65,9 +65,9 @@ section {
      margin-bottom: 0;
 }
 
-.logo-navbar-cravings{
-     color:#fff;
-     margin:25px;
+.logo-navbar-cravings {
+     color: #fff;
+     margin: 25px;
      font-size: 32px;
      font-weight: 700;
      letter-spacing: 1px;
@@ -121,12 +121,17 @@ section {
 
 .login-form {
      width: 90%;
-     margin-left:auto!important;
+     margin-left: auto !important;
 }
 
 /*--------------------------------------------------------------
 * Cravings custom stylings
 --------------------------------------------------------------*/
+.category-view {
+     font-size: calc(1.1rem + 0.3vw);
+     font-weight: 500;
+     line-height: 1.2;
+}
 
 .noleft {
      padding-left: 0px;

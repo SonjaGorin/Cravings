@@ -14,10 +14,6 @@ const withAuth = require("../utils/auth");
 const dic = require("../db/queries"); // Collection of SQL queries
 const notifier = require('node-notifier');
 
-router.get('/template', (req,res) =>{
-     res.render('template');
-})
-
 router.get('/', async (req, res) => {
      res.render('hero', {
           logged_in: req.session.logged_in,
@@ -61,11 +57,7 @@ router.get('/list', withAuth, async (req, res) => {
                user_name: req.session.user_name,
                user_all: true,
           });
-          
-          notifier.notify({
-               title: "Cravings",
-               message: "Hope you find your recipe!"
-          });
+
      }
 
 });
@@ -95,11 +87,6 @@ router.get('/memberlist', withAuth, async (req, res) => {
                user_name: req.session.user_name,
                user_all: false,
           });
-          
-          notifier.notify({
-               title: "Cravings",
-               message: "Hope you find your recipe!"
-          });
      }
 
 });
@@ -118,23 +105,23 @@ router.get('/register', (req, res) => {
 })
 
 router.get('/create', async (req, res) => {
-     
+
      try {
           const categoryData = await Category.findAll();
 
           const categories = categoryData.map(data => data.get({ plain: true }))
 
 
-     
-     if (req.session.logged_in) {
-          res.render('add-recipe', {
-               categories
-          });
+
+          if (req.session.logged_in) {
+               res.render('add-recipe', {
+                    categories
+               });
+          }
+     } catch (err) {
+          console.log(err);
+          res.status(500).json(err);
      }
-}  catch (err) {
-     console.log(err);
-     res.status(500).json(err);
-   }
 
 });
 
@@ -143,36 +130,37 @@ router.get('/view/:id', async (req, res) => {
           const recipeData = await Recipe.findByPk(req.params.id, {
                include: [
                     {
-                      model: Ingredients
+                         model: Ingredients
                     },
                     {
                          model: Category
                     }
                ]
           });
-          
+
           const recipe = recipeData.get({ plain: true });
-
-         
-
           const isEditable = recipeData.user_id == req.session.user_id
 
-     if (req.session.logged_in) {
-          res.render('recipe', {
-          recipe, isEditable
-     });
+          if (req.session.logged_in) {
+               res.render('recipe', {
+                    recipe, isEditable
+               });
+
+               notifier.notify({
+                    title: "Cravings",
+                    message: "We hope you enjoy this recipe!"
+               });
+          }
+
+     } catch (err) {
+          console.log(err);
+          res.status(500).json(err);
      }
-}  catch (err) {
-     console.log(err);
-     res.status(500).json(err);
-   }
 
 });
 
-
-
 router.get('/edit/:id', async (req, res) => {
-     
+
      try {
 
           // const categories = 
@@ -180,27 +168,27 @@ router.get('/edit/:id', async (req, res) => {
           const recipeData = await Recipe.findByPk(req.params.id, {
                include: [
                     {
-                      model: Ingredients
+                         model: Ingredients
                     },
 
 
                ]
           });
 
-          
+
           const recipe = recipeData.get({ plain: true })
 
 
-          
-     if (req.session.logged_in) {
-          res.render('update-delete-recipe', {
-          recipe
-     });
+
+          if (req.session.logged_in) {
+               res.render('update-delete-recipe', {
+                    recipe
+               });
+          }
+     } catch (err) {
+          console.log(err);
+          res.status(500).json(err);
      }
-}  catch (err) {
-     console.log(err);
-     res.status(500).json(err);
-   }
 
 });
 
