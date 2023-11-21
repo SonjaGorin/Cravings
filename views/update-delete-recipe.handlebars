@@ -19,7 +19,7 @@
                <!-- Recipe Category -->
                <div class="col-md-4 text-black">
                     <div class="mb-3">
-                         <label for="category-id" class="form-label">Categories</label>
+                         <label for="category-id" class="form-label">Category</label>
                          <select name="" id="category-id" class="h-custom-2 form-select form-control-sm">
                               <option value={{ recipe.category.id }}>{{ recipe.category.name }}</option>
                               {{#each categories as |category|}}
@@ -37,13 +37,32 @@
                          <div class="col-md-6">
                               <p>Ingredient Name</p>
                          </div>
-                         <div class="col-md-3 text-center">
+                         <div class="col-md-3">
                               <p>Measurement</p>
                          </div>
-                         <div class="col-md-2 text-center">
+                         <div class="col-md-2">
                               <p>Unit</p>
                          </div>
                     </div>
+               </div>
+          </div>
+
+                    <!-- Section Ingredients -->
+          <div class="row mb-1">
+               <div class="col-md-10 ingredients-section">
+                    {{#each recipe.ingredients as |ingredient| }}
+                    <div class="row mb-1">
+                         <div class="col-md-6">
+                              <input class="form-control" type="text" value="{{ingredient.ingredient}}" />
+                         </div>
+                         <div class="col-md-3 text-center">
+                              <input class="form-control" type="text" value="{{ingredient.measurement}}" />
+                         </div>
+                         <div class="col-md-2">
+                              <input class="form-control" type="text" value="{{ingredient.unit}}">
+                         </div>
+                    </div>
+                    {{/each}}
                </div>
           </div>
 
@@ -73,24 +92,7 @@
                </div>
           </div>
 
-          <!-- Section Ingredients -->
-          <div class="row mb-1">
-               <div class="col-md-10 ingredients-section">
-                    {{#each recipe.ingredients as |ingredient| }}
-                    <div class="row mb-1">
-                         <div class="col-md-6">
-                              <input class="form-control" type="text" value="{{ingredient.ingredient}}" />
-                         </div>
-                         <div class="col-md-3 text-center">
-                              <input class="form-control" type="text" value="{{ingredient.measurement}}" />
-                         </div>
-                         <div class="col-md-2">
-                              <input class="form-control" type="text" value="{{ingredient.unit}}">
-                         </div>
-                    </div>
-                    {{/each}}
-               </div>
-          </div>
+
 
           <!-- Section Preparations -->
           <div class="row mt-3 mb-5">
