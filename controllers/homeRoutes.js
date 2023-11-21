@@ -170,6 +170,9 @@ router.get('/edit/:id', async (req, res) => {
                     {
                          model: Ingredients
                     },
+                    {
+                         model: Category
+                    }
 
 
                ]
@@ -177,6 +180,11 @@ router.get('/edit/:id', async (req, res) => {
 
 
           const recipe = recipeData.get({ plain: true })
+
+          const categoryData = await Category.findAll();
+          const filteredCategories = categoryData.filter(category => category.id !== recipe.category_id)
+          const categories = filteredCategories.map(data => data.get({ plain : true }))
+
 
 
 
