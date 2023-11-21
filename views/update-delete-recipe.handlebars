@@ -38,7 +38,7 @@
         </section>
 
         <label id="instructions-label" for="edit-recipe-instructions">Preparation Instructions</label>
-        <input type="text" id="edit-post-content-input" name="edit-post-content" value={{ recipe.instructions }}/>
+        <textarea type="text" id="edit-post-content-input" name="edit-post-content">{{{ recipe.instructions }}}</textarea>
 
         <button id="update-button" type="submit">Update Recipe</button>
         <button id="delete-button" type="submit">Delete Recipe</button>

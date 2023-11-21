@@ -2,10 +2,10 @@
     <h3 id="create-recipe-title">Create New Recipe</h3>
     <form class="add-recipe-form">
 
-        <select>
+        <select id="category-id">
             <option>Choose Category</option>
             {{#each categories}}
-            <option id="category-id" value={{ id }}>{{ name }}</option>
+            <option  value={{ this.id }}>{{ this.name }}</option>
             {{/each}}
         </select>
 
