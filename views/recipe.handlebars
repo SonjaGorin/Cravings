@@ -2,7 +2,8 @@
     <h2 id="view-recipe-title">{{ recipe.name }}</h2>
 
     <section>
-        <h3>{{ recipe.category.name }}</h3>
+        <h3>Category:</h3>
+        {{ recipe.category.name }}
     </section>
 
     <section>
@@ -20,6 +21,6 @@
     </section>
 
     {{#if isEditable}}
-        <button id="edit-button" type="click">Edit</button>
+        <a id="edit-button" href="/edit/{{recipe.id}}">Edit</a>
     {{/if}}
 </section>

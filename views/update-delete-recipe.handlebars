@@ -4,13 +4,13 @@
 
         <select>
             <option>Choose Category</option>
-            {{#each recipe.categories as |category|}}
-            <option id="category-id" value={{ category.id }}>{{ category.name }}</option>
+            {{#each categories}}
+            <option id="category-id" value={{ this.id }}>{{ this.name }}</option>
             {{/each}}
         </select>
 
         <label id="recipe-name-label" for="edit-recipe-name">Recipe Name</label>
-        <input type="text" id="edit-recipe-name-input" name="edit-recipe-name" value={{ recipe.name }}/>
+        <input type="text" id="edit-recipe-name-input" name="edit-recipe-name" value="{{ recipe.name }}"/>
 
         <h4>Ingredients</h4>
 
@@ -21,9 +21,9 @@
         <section class="ingredients-section">
             {{#each recipe.ingredients as |ingredient| }}
                 <div>
-                    <input value={{ ingredient.ingredient }} />
-                    <input value={{ ingredient.measurement }} />
-                    <input value={{ ingredient.unit }} />
+                    <input value="{{ ingredient.ingredient }}" />
+                    <input value="{{ ingredient.measurement }}" />
+                    <input value="{{ ingredient.unit }}" />
                 </div>
             {{/each}}
         </section>
@@ -38,7 +38,7 @@
         </section>
 
         <label id="instructions-label" for="edit-recipe-instructions">Preparation Instructions</label>
-        <textarea type="text" id="edit-post-content-input" name="edit-post-content">{{{ recipe.instructions }}}</textarea>
+        <textarea id="edit-post-content-input" name="edit-post-content">{{{ recipe.instructions }}}</textarea>
 
         <button id="update-button" type="submit">Update Recipe</button>
         <button id="delete-button" type="submit">Delete Recipe</button>
