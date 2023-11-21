@@ -1,7 +1,9 @@
 const router = require("express").Router();
+const withAuth = require('../../utils/auth')
+
 const { Recipe, Category, Users, Ingredients } = require("../../models");
 
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
     const recipeData = await Recipe.findAll({
       include: [
@@ -26,7 +28,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", withAuth, async (req, res) => {
   try {
     const recipeData = await Recipe.findByPk(req.params.id, {
       include: [
@@ -51,7 +53,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", withAuth, async (req, res) => {
   try {
     const delId = await Recipe.destroy({
       where: {
@@ -69,7 +71,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   try {
 
     const ingredientDetails = req.body.ingredients;
@@ -110,7 +112,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", withAuth, async (req, res) => {
   try {
     const upRec = await Recipe.update(
       {
