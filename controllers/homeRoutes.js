@@ -176,6 +176,8 @@ router.get('/edit/:id', async (req, res) => {
      
      try {
 
+          // const categories = 
+
           const recipeData = await Recipe.findByPk(req.params.id, {
                include: [
                     {
