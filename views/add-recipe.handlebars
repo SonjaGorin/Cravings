@@ -4,11 +4,15 @@
           <div class="row">
                <h3 class="fw-normal mb-3" style="letter-spacing: 1px;">Create New Recipe</h3>
           </div>
+          <form class="add-recipe-form">
+
+
+
           <div class="row">
                <div class="col-md-6 text-black">
                     <div class="mb-3">
                          <label for="recipename" class="form-label">Recipe Name</label>
-                         <input class="form-control" id="recipename" type="text" placeholder="Default input"
+                         <input class="form-control" id="add-recipe-name-input" type="text" placeholder="Recipe name"
                               aria-label="default input example">
                     </div>
                </div>
@@ -18,7 +22,7 @@
                          <select name="" id="catselect" class="h-custom-2 form-select form-control-sm">
                               <option>Choose Category</option>
                               {{#each categories}}
-                              <option id="category-id" value={{ id }}>{{ name }}</option>
+                              <option id="category-id" value={{ this.id }}>{{ this.name }}</option>
                               {{/each}}
                          </select>
                     </div>
@@ -41,6 +45,13 @@
                </div>
           </div>
 
+                    <!-- Ingredients -->
+          <div class="row mb-1">
+               <div class="col-md-10 ingredients-section">
+
+               </div> <!-- Append new ingredient line -->
+          </div>
+
           <!-- Section add Ingredients -->
           <div class="row mb-2">
                <div class="col-md-10">
@@ -58,7 +69,7 @@
                                    name="add-measurement-unit" />
                          </div>
                          <div class="col-md-1 ingredients-inputs-section">
-                              <button class="btn wide-button" id="add-ingredient-button"
+                              <button class="btn wide-button" id="add-ingredient-button" type="button"
                                    style="background-color: #842029;">
                                    <i class="bi bi-plus-square-dotted" style="color: white"></i>
                               </button>
@@ -67,41 +78,21 @@
                </div>
           </div>
 
-          <!-- Ingredients -->
-          <div class="row mb-1">
-               <div class="col-md-10 ingredients-section"> <!-- Append new ingredient line -->
 
-                    <div class="row mb-1"> <!-- row append to ingredients-section -->
-                         <div class="col-md-6"> <!-- column 6 / append to row -->
-                              <input class="form-control" type="text" id="add-ingredient-name-input"
-                                   name="add-ingredient-name" /> <!-- form control / append to column -->
-                         </div>
-                         <div class="col-md-3"> <!-- column 3 / append to row -->
-                              <input class="form-control" type="text" id="add-ingredient-measurement-input"
-                                   name="add-ingredient-measurement" /> <!-- form control / append to column -->
-                         </div>
-                         <div class="col-md-2"> <!-- column 2 / append to row -->
-                              <input class="form-control" type="text" id="add-measurement-unit-input"
-                                   name="add-measurement-unit" /> <!-- form control / append to column -->
-                         </div>
-                    </div>
-
-               </div>
-          </div>
 
           <!-- Section Preparations -->
           <div class="row mt-3">
                <div class="col-md-10">
                     <label for="preparation" class="form-label"><strong>Preparation Instructions</strong></label>
-                    <textarea class="form-control" id="preparation" rows="5"></textarea>
-                    <button class="btn mr-1 mt-1" style="background-color: #842029;color:white;"><i
+                    <textarea class="form-control" id="add-recipe-instructions-input" rows="5"></textarea>
+                    <button id="create-button" class="btn mr-1 mt-1" style="background-color: #842029;color:white;"><i
                               class="bi bi-apple"></i> Create</button>
                     <a class="btn btn-dark mr-1 mt-1" style="width:150px" href="/list"><i class="bi bi-door-open"></i>
                          Cancel</a>
                </div>
 
           </div>
-
+        </form>
      </div>
 </section>
 
