@@ -1,7 +1,8 @@
 const router = require("express").Router();
+const withAuth = require('../../utils/auth')
 const { Recipe, Category, Ingredients } = require("../../models");
 
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
     try {
       const categoryData = await Category.findAll({
         include: {

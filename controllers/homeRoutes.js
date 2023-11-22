@@ -125,7 +125,7 @@ router.get('/create', async (req, res) => {
 
 });
 
-router.get('/view/:id', async (req, res) => {
+router.get('/view/:id', withAuth, async (req, res) => {
      try {
           const recipeData = await Recipe.findByPk(req.params.id, {
                include: [
@@ -159,17 +159,19 @@ router.get('/view/:id', async (req, res) => {
 
 });
 
-router.get('/edit/:id', async (req, res) => {
+router.get('/edit/:id', withAuth, async (req, res) => {
 
      try {
 
-          // const categories = 
 
           const recipeData = await Recipe.findByPk(req.params.id, {
                include: [
                     {
                          model: Ingredients
                     },
+                    {
+                         model: Category
+                    }
 
 
                ]
@@ -178,11 +180,16 @@ router.get('/edit/:id', async (req, res) => {
 
           const recipe = recipeData.get({ plain: true })
 
+          const categoryData = await Category.findAll();
+          const filteredCategories = categoryData.filter(category => category.id !== recipe.category_id)
+          const categories = filteredCategories.map(data => data.get({ plain : true }))
+
+
 
 
           if (req.session.logged_in) {
                res.render('update-delete-recipe', {
-                    recipe
+                    recipe, categories
                });
           }
      } catch (err) {
