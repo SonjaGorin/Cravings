@@ -151,9 +151,10 @@ router.put("/:id", withAuth, async (req, res) => {
       );
       console.log("updating");
       await t.commit();
+      console.log("done");
     }
 
-    return res.status(200);
+    return res.status(200).json({"ok": true});
   } catch (err) {
     console.log(err);
     await t.rollback();
