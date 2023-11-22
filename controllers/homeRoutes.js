@@ -50,11 +50,15 @@ router.get('/list', withAuth, async (req, res) => {
      const handlebarData = dbData.map((list) => list.get({ plain: true }));
 
      if (handlebarData.length != 0) {
+          
+          req.session.origin_call = "list"; //Store call origin
+
           res.render('recipelist', {
                handlebarData,
                logged_in: req.session.logged_in,
                user_id: req.session.user_id,
                user_name: req.session.user_name,
+               origin_call: req.session.origin_call,
                user_all: true,
           });
 
@@ -78,13 +82,18 @@ router.get('/memberlist', withAuth, async (req, res) => {
      // This will serialize the data prior to send to handlebar. We are using list 
      // in this case as we are dealing with a bunch of records. 
      const handlebarData = dbData.map((list) => list.get({ plain: true }));
+     const callingname = "memberlist";
 
      if (handlebarData.length != 0) {
+
+          req.session.origin_call = "memberlist"; //Store call origin
+
           res.render('recipelist', {
                handlebarData,
                logged_in: req.session.logged_in,
                user_id: req.session.user_id,
                user_name: req.session.user_name,
+               origin_call: req.session.origin_call,
                user_all: false,
           });
      }
@@ -143,7 +152,9 @@ router.get('/view/:id', async (req, res) => {
 
           if (req.session.logged_in) {
                res.render('recipe', {
-                    recipe, isEditable
+                    recipe, 
+                    isEditable,
+                    origin_call: req.session.origin_call,
                });
 
                notifier.notify({
