@@ -21,7 +21,7 @@ const createRecipe = async (event) => {
     } else {
         alert(response.statusText);
     }
-  };
+};
   
 document
     .querySelector(".add-recipe-form")
