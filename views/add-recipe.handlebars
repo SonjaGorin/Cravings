@@ -64,8 +64,9 @@
                                     name="add-ingredient-measurement" />
                             </div>
                             <div class="col-md-2">
-                                <input class="form-control" type="text" id="add-measurement-unit-input"
-                                    name="add-measurement-unit" />
+                                {{> measurement-units }}
+                                {{!-- <input class="form-control" type="text" id="add-measurement-unit-input"
+                                    name="add-measurement-unit" /> --}}
                             </div>
                             <div class="col-md-1 ingredients-inputs-section">
                                 <button class="btn wide-button" id="add-ingredient-button" type="button"
