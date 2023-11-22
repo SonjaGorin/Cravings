@@ -66,6 +66,11 @@ document.addEventListener("DOMContentLoaded", function () {
           const username = document.querySelector('#username').value.trim();
 
 
+          if (!(validator.isAlpha(username))) {
+               alert("Please enter a proper name.")
+               return false
+          }
+
           if (validator.isEmpty(userpassword)) {
                alert("Please enter a password.")
                return false;
