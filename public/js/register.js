@@ -72,6 +72,12 @@ document.addEventListener("DOMContentLoaded", function () {
                return false;
           }
 
+
+               if (!(validator.isLength(userpassword, {min: 3, max: 20}))) {
+            alert('Password cannot be less than 3 characters or more than 20 characters.')
+            return false;
+          }
+
           if (!(validator.equals(userpassword, passwordvalidate))) {               
                alert('Invalid password! they need to match.');
                return false;
