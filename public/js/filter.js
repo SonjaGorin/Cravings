@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           // Jacob is to provide this API/Endpoint. I don't know how he will call it, this will do for now but 
           // it does not work. It is on stand-by
-          const response = await fetch('api/categories', {
+          const response = await fetch('/api/categories', {
                method: 'GET',
                headers: { 'Content-Type': 'application/json' },
           });
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
       */
      const loadMembers = async () => {
 
-          const response = await fetch('api/users/members', {
+          const response = await fetch('/api/users/members', {
                method: 'GET',
                headers: { 'Content-Type': 'application/json' },
           });
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
                          optionitem.setAttribute('id', 'memberId' + data[i].id)
                          dropdown.appendChild(optionitem);
                     }
-                    
+
                }
 
           } else {
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
      }
 
-     // Entry point start process
+     // Script entry point start process - add here event listeners
      function initialize() {
 
           loadCategory(); //Load the categories from api/categories

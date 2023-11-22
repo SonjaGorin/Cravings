@@ -21,11 +21,7 @@ const createRecipe = async (event) => {
     } else {
         alert(response.statusText);
     }
-  };
-  
-document
-    .querySelector(".add-recipe-form")
-    .addEventListener("submit", createRecipe);
+};
 
 const ingredientsSectionEl = document.querySelector(".ingredients-section")
 
@@ -39,6 +35,8 @@ const ingredients = () => {
     })
     return result
 }
+
+const unitOptionsEl = document.querySelector("#add-measurement-unit-input")
 
 const addIngredient = () => {
     const newIngredients = document.createElement("div");
@@ -69,11 +67,11 @@ const addIngredient = () => {
     measurementDiv.appendChild(ingredientMeasurementInputEl)
     newIngredients.appendChild(measurementDiv);
 
-    const measurementUnitInputEl = document.createElement("input");
-    measurementUnitInputEl.setAttribute("type", "text");
+
+    const measurementUnitInputEl = unitOptionsEl.cloneNode(true);
+    measurementUnitInputEl.selectedIndex = unitOptionsEl.selectedIndex;
+    measurementUnitInputEl.removeAttribute("id")
     measurementUnitInputEl.setAttribute("class", "add-measurement-unit-value form-control");
-    measurementUnitInputEl.setAttribute("name", "add-measurement-unit");
-    measurementUnitInputEl.value = document.querySelector("#add-measurement-unit-input").value
     unitDiv.appendChild(measurementUnitInputEl)
     newIngredients.appendChild(unitDiv);
 
@@ -87,3 +85,7 @@ const addIngredient = () => {
 document
     .querySelector("#add-ingredient-button")
     .addEventListener("click", addIngredient);
+
+document
+    .querySelector(".add-recipe-form")
+    .addEventListener("submit", createRecipe);

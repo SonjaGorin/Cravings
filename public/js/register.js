@@ -14,7 +14,6 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-
      /**
       * Validate email address already exists before process starts
       * @param {*} event 
@@ -104,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
      //      return emailRegex.test(email);
      // }
 
-     // Entry point start process
+     // Script entry point start process - add here event listeners
      function initialize() {
 
           document.querySelector('#registration').addEventListener('submit', registerUser);

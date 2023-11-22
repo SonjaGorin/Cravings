@@ -9,10 +9,7 @@
  * Date : 11/14/2023 5:50:29 PM
  *******************************************************************/
 const dateFormatted = (date) => {
-     var when = new Date(date);
-     var year = when.getFullYear(), month = when.getMonth(), day = when.getDate();
-
-     return `${day}/${month}/${year}`;
+     return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()}`;
 };
 
 const compareequal = (v1, v2) => {
