@@ -38,7 +38,7 @@ const sess = {
      secret: "pmaC ytisrevinU notelraC",
      cookie: {},
      resave: false,
-     saveUninitialized: true,
+     saveUninitialized: false,
      store: new SequelizeStore({
           db: sequelize
      })
