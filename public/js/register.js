@@ -64,6 +64,8 @@ document.addEventListener("DOMContentLoaded", function () {
           debugger;
 
           if (username && useremail) {
+               debugger;
+
                const response = await fetch('/api/users/register', {
                     method: 'POST',
                     body: JSON.stringify({ username, useremail, userpassword }),
@@ -72,9 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                if (response.ok) {
                     
-                    document.location.replace("/");
-                    document.getElementById("startbutton").click();
-                    document.location.reload(true);
+                    document.location.replace("/list");
 
                } else {
                     alert('Oh boy! Something went wrong. I am sorry please contact me. Urgh... hate when this happens');
