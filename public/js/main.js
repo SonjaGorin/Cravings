@@ -57,7 +57,7 @@ $(document).ready(function () {
       * destroy the session cookie. Then it returns to the main page portal.
       */
      const logUserOut = async () => {
-          const response = await fetch('api/users/logout', {
+          const response = await fetch('/api/users/logout', {
                method: 'POST',
                headers: { 'Content-Type': 'application/json' },
           });
@@ -69,6 +69,7 @@ $(document).ready(function () {
           }
      }
 
+     // Script entry point start process - add here event listeners
      const initApplication = () => {
 
           const logoutControl = document.querySelector("#logout");

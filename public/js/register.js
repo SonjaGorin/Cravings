@@ -10,7 +10,6 @@
  *******************************************************************/
 document.addEventListener("DOMContentLoaded", function () {
 
-
      /**
       * Validate email address already exists before process starts
       * @param {*} event 
@@ -20,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           const useremail = document.querySelector('#useremail').value.trim();
 
-          if (useremail==="") {
+          if (useremail === "") {
                alert('You must enter an email address!');
                return false;
           }
@@ -57,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const passwordvalidate = document.querySelector('#passwordvalidate').value.trim();
           const username = document.querySelector('#username').value.trim();
 
-          if (userpassword && (userpassword !== passwordvalidate)) {               
+          if (userpassword && (userpassword !== passwordvalidate)) {
                alert('Invalid password! they need to match.');
                return false;
           }
@@ -83,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
           return emailRegex.test(email);
      }
 
-     // Entry point start process
+     // Script entry point start process - add here event listeners
      function initialize() {
 
           document.querySelector('#registration').addEventListener('submit', registerUser);
