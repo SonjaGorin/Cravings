@@ -29,6 +29,11 @@ document.addEventListener("DOMContentLoaded", function () {
                return false;
           }
 
+          if (!(validator.isEmail(useremail))) {
+               alert('Must have a valid email format.')
+               return false;
+          }
+
           try {
                const response = await fetch('/api/users/validate', {
                     method: 'POST',
@@ -67,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
                return false;
           }
 
-          if (userpassword !== passwordvalidate) {               
+          if (!(validator.equals(userpassword, passwordvalidate))) {               
                alert('Invalid password! they need to match.');
                return false;
           }
@@ -88,10 +93,10 @@ document.addEventListener("DOMContentLoaded", function () {
      };
 
      // Email validation not implemented -we have a different method.
-     function validateEmail(email) {
-          var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          return emailRegex.test(email);
-     }
+     // function validateEmail(email) {
+     //      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+     //      return emailRegex.test(email);
+     // }
 
      // Entry point start process
      function initialize() {
