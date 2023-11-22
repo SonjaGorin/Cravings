@@ -89,13 +89,16 @@ const addIngredient = () => {
     createRecipeButtonEl.disabled = false;
 }
 
-emptyIngredientNameInputEl.addEventListener("input", () => {
-    if (emptyIngredientNameInputEl.value === "") {
+const disableButton = () => {
+    if (emptyMeasurementNameInputEl.value === "" && emptyIngredientNameInputEl.value === "") {
         createRecipeButtonEl.disabled = false;
     } else {
         createRecipeButtonEl.disabled = true;
     }
-})
+}
+
+emptyIngredientNameInputEl.addEventListener("input", disableButton)
+emptyMeasurementNameInputEl.addEventListener("input", disableButton)
 
 document
     .querySelector("#add-ingredient-button")
