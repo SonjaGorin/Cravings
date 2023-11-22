@@ -9,15 +9,19 @@
  * Date : 11/14/2023 5:50:29 PM
  *******************************************************************/
 const router = require("express").Router();
+const validator = require('validator');
 const { Users, Recipe } = require("../../models");
 
 router.post("/register", async (req, res) => {
   try {
+    
     const dsData = await Users.create({
       name: req.body.username,
       email: req.body.useremail,
       password: req.body.userpassword,
     });
+
+
     res.status(200).json(dsData);
   } catch (error) {
     res.status(400).json(error);

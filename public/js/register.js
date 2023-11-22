@@ -8,6 +8,10 @@
  * 
  * Date : 11/21/2023 2:46:52 PM
  *******************************************************************/
+
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
 
@@ -20,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           const useremail = document.querySelector('#useremail').value.trim();
 
-          if (useremail==="") {
+          if (validator.isEmpty(useremail)) {
                alert('You must enter an email address!');
                return false;
           }
@@ -57,7 +61,13 @@ document.addEventListener("DOMContentLoaded", function () {
           const passwordvalidate = document.querySelector('#passwordvalidate').value.trim();
           const username = document.querySelector('#username').value.trim();
 
-          if (userpassword && (userpassword !== passwordvalidate)) {               
+
+          if (validator.isEmpty(userpassword)) {
+               alert("Please enter a password.")
+               return false;
+          }
+
+          if (userpassword !== passwordvalidate) {               
                alert('Invalid password! they need to match.');
                return false;
           }
