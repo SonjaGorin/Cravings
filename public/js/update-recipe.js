@@ -28,6 +28,8 @@ const editRecipe = async (event) => {
     }
 }
 
+const ingredientsSectionEl = document.querySelector(".ingredients-section")
+
 const ingredients = (root) => {
     console.log(root);
     const result = [];
@@ -41,7 +43,7 @@ const ingredients = (root) => {
     return result
 }
 
-const ingredientsSectionEl = document.querySelector(".ingredients-section")
+const unitOptionsEl = document.querySelector("#add-measurement-unit-input")
 
 const addIngredient = () => {
     const newIngredients = document.createElement("div");
@@ -72,11 +74,10 @@ const addIngredient = () => {
     measurementDiv.appendChild(ingredientMeasurementInputEl)
     newIngredients.appendChild(measurementDiv);
 
-    const measurementUnitInputEl = document.createElement("input");
-    measurementUnitInputEl.setAttribute("type", "text");
-    measurementUnitInputEl.setAttribute("class", "edit-measurement-unit-value form-control");
-    measurementUnitInputEl.setAttribute("name", "edit-measurement-unit");
-    measurementUnitInputEl.value = document.querySelector("#add-measurement-unit-input").value
+    const measurementUnitInputEl = unitOptionsEl.cloneNode(true);
+    measurementUnitInputEl.selectedIndex = unitOptionsEl.selectedIndex;
+    measurementUnitInputEl.removeAttribute("id")
+    measurementUnitInputEl.setAttribute("class", "edit-measurement-unit-value form-control form-select");
     unitDiv.appendChild(measurementUnitInputEl)
     newIngredients.appendChild(unitDiv);
 

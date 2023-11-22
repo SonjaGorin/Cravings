@@ -22,10 +22,6 @@ const createRecipe = async (event) => {
         alert(response.statusText);
     }
 };
-  
-document
-    .querySelector(".add-recipe-form")
-    .addEventListener("submit", createRecipe);
 
 const ingredientsSectionEl = document.querySelector(".ingredients-section")
 
@@ -90,4 +86,6 @@ document
     .querySelector("#add-ingredient-button")
     .addEventListener("click", addIngredient);
 
-console.log(unitOptionsEl)
+document
+    .querySelector(".add-recipe-form")
+    .addEventListener("submit", createRecipe);
