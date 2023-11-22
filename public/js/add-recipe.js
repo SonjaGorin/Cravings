@@ -1,3 +1,7 @@
+const emptyIngredientNameInputEl = document.querySelector(".name-input");
+const emptyMeasurementNameInputEl = document.querySelector(".measure-input");
+const createRecipeButtonEl = document.querySelector("#create-button")
+
 const createRecipe = async (event) => {
     event.preventDefault();
   
@@ -22,6 +26,8 @@ const createRecipe = async (event) => {
         alert(response.statusText);
     }
 };
+
+
 
 const ingredientsSectionEl = document.querySelector(".ingredients-section")
 
@@ -71,7 +77,7 @@ const addIngredient = () => {
     const measurementUnitInputEl = unitOptionsEl.cloneNode(true);
     measurementUnitInputEl.selectedIndex = unitOptionsEl.selectedIndex;
     measurementUnitInputEl.removeAttribute("id")
-    measurementUnitInputEl.setAttribute("class", "add-measurement-unit-value form-control");
+    measurementUnitInputEl.setAttribute("class", "add-measurement-unit-value form-control form-select");
     unitDiv.appendChild(measurementUnitInputEl)
     newIngredients.appendChild(unitDiv);
 
@@ -80,12 +86,21 @@ const addIngredient = () => {
     document.querySelector("#add-ingredient-name-input").value = "";
     document.querySelector("#add-ingredient-measurement-input").value = "";
     document.querySelector("#add-measurement-unit-input").value = "";
+    createRecipeButtonEl.disabled = false;
 }
+
+emptyIngredientNameInputEl.addEventListener("input", () => {
+    if (emptyIngredientNameInputEl.value === "") {
+        createRecipeButtonEl.disabled = false;
+    } else {
+        createRecipeButtonEl.disabled = true;
+    }
+})
 
 document
     .querySelector("#add-ingredient-button")
     .addEventListener("click", addIngredient);
 
 document
-    .querySelector(".add-recipe-form")
-    .addEventListener("submit", createRecipe);
+    .querySelector("#create-button")
+    .addEventListener("click", createRecipe);
