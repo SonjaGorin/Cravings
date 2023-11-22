@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const sequelize = require('../../config/connection');
 const { Recipe, Category, Users, Ingredients } = require("../../models");
 
 router.get("/", async (req, res) => {
@@ -111,11 +112,14 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
+  const t = await sequelize.transaction();
   try {
+    console.log(req.body);
     const upRec = await Recipe.update(
       {
         name: req.body.name,
         instructions: req.body.instructions,
+        category_id: req.body.category_id,
       },
       {
         where: {
@@ -123,24 +127,32 @@ router.put("/:id", async (req, res) => {
         },
       }
     );
-
-    const upIng = await Ingredients.update(
-      {
-        ingredient: req.body.ingredient,
-        measurement: req.body.measurement,
-        unit: req.body.unit,
+    console.log("deleting");
+    await Ingredients.destroy({
+      where: {
+        recipe_id: req.params.id,
       },
-      {
-        where: {
-          id: req.params.id,
-        },
-      }
-    );
-
-    if (upRec && upIng) {
-      return res.status(200).json([upRec, upIng, "hello"]);
+    });
+    console.log("deletion complete");
+    const ingredientDetails = req.body.ingredients;
+    if (ingredientDetails && ingredientDetails.length > 0) {
+      console.log("preparing");
+      const createdIngredients = await Ingredients.bulkCreate(
+        ingredientDetails.map((ingredient) => ({
+          ingredient: ingredient.ingredient,
+          measurement: ingredient.measurement,
+          unit: ingredient.unit,
+          recipe_id: req.params.id,
+        }))
+      );
+      console.log("updating");
+      await t.commit();
     }
+
+    return res.status(200);
   } catch (err) {
+    console.log(err);
+    await t.rollback();
     res.status(500).json(err);
   }
 });
