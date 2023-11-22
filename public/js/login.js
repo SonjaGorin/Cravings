@@ -8,28 +8,37 @@
  * 
  * Date : 11/14/2023 5:50:29 PM
  *******************************************************************/
-const loginFormHandler = async (event) => {
-     event.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
 
-     const email = document.querySelector('#email-login').value.trim();
-     const password = document.querySelector('#password-login').value.trim();
+     const loginFormHandler = async (event) => {
+          event.preventDefault();
 
-     if (email && password) {
-          const response = await fetch('api/users/login', {
-               method: 'POST',
-               body: JSON.stringify({ email, password }),
-               headers: { 'Content-Type': 'application/json' },
-          });
+          const email = document.querySelector('#email-login').value.trim();
+          const password = document.querySelector('#password-login').value.trim();
 
-          if (response.ok) {
-               document.location.reload(true);
-               document.location.replace("/");
-          } else {
-               alert('Failed to log in');
+          if (email && password) {
+               const response = await fetch('/api/users/login', {
+                    method: 'POST',
+                    body: JSON.stringify({ email, password }),
+                    headers: { 'Content-Type': 'application/json' },
+               });
+
+               if (response.ok) {
+                    document.location.reload(true);
+                    document.location.replace("/");
+               } else {
+                    alert('Failed to log in');
+               }
           }
-     }
-};
+     };
 
-document
-     .querySelector('.login-form')
-     .addEventListener('submit', loginFormHandler);
+     // Script entry point start process - add here event listeners
+     const initApplication = () => {
+
+          document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
+
+     }
+
+     initApplication();
+
+})
