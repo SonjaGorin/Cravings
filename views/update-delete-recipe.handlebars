@@ -49,6 +49,8 @@
                     </div>
                </div>
 
+               {{!-- id=ingredient.id --}}
+
                          <!-- Section Ingredients -->
                <div class="row mb-1">
                     <div class="col-md-10 ingredients-section">
@@ -61,11 +63,20 @@
                                    <input class="form-control  edit-ingredient-measurement-value" type="text" value="{{ingredient.measurement}}" />
                               </div>
                               <div class="col-md-2">
-                                   <input class="form-control edit-measurement-unit-value" type="text" value="{{ingredient.unit}}">
+                                   <select class="h-custom-2 form-select form-control-sm edit-measurement-unit-value">
+                                        <option>{{ingredient.unit}}</option>
+                                        {{> measurement-units }}
+                                   </select>
+                                   {{!-- <input class="form-control edit-measurement-unit-value" type="text" value="{{ingredient.unit}}"> --}}
                               </div>
                          </div>
                          {{/each}}
                     </div>
+               </div>
+
+               <div class="row mb-1">
+                    <div class="col-md-10 ingredients-section">
+                    </div> <!-- Append new ingredient line -->
                </div>
 
                <!-- Section Ingredients -->
@@ -81,8 +92,11 @@
                                         name="add-ingredient-measurement" aria-label="Ingredient measurement" />
                               </div>
                               <div class="col-md-2">
-                                   <input class="form-control edit-measurement-unit-value" type="text" id="add-measurement-unit-input"
-                                        name="add-measurement-unit" aria-label="Measurement unit" />
+                                   <select class="h-custom-2 form-select form-control-sm edit-measurement-unit-value" id="add-measurement-unit-input">
+                                   {{> measurement-units }}
+                                   </select>
+                                   {{!-- <input class="form-control edit-measurement-unit-value" type="text" id="add-measurement-unit-input"
+                                        name="add-measurement-unit" aria-label="Measurement unit" /> --}}
                               </div>
                               <div class="col-md-1 ingredients-inputs-section">
                                    <button class="btn wide-button" id="add-ingredient-button" type="button"
@@ -93,12 +107,6 @@
                          </div>
                     </div>
                </div>
-
-               <div class="row mb-1">
-                    <div class="col-md-10 ingredients-section">
-                    </div> <!-- Append new ingredient line -->
-               </div>
-
 
                <!-- Section Preparations -->
                <div class="row mt-3 mb-5">
