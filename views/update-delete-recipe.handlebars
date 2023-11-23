@@ -65,6 +65,7 @@
                               <div class="col-md-2">
                                    <select class="h-custom-2 form-select form-control-sm edit-measurement-unit-value">
                                         <option>{{ingredient.unit}}</option>
+                                        <option value="">Choose Unit</option>
                                         {{> measurement-units }}
                                    </select>
                                    {{!-- <input class="form-control edit-measurement-unit-value" type="text" value="{{ingredient.unit}}"> --}}
@@ -99,7 +100,8 @@
                               </div>
                               <div class="col-md-2">
                                    <select class="h-custom-2 form-select form-control-sm edit-measurement-unit-value" id="add-measurement-unit-input">
-                                   {{> measurement-units }}
+                                        <option value="">Choose Unit</option>
+                                        {{> measurement-units }}
                                    </select>
                                    {{!-- <input class="form-control edit-measurement-unit-value" type="text" id="add-measurement-unit-input"
                                         name="add-measurement-unit" aria-label="Measurement unit" /> --}}

@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
  */
 router.get('/login', (req, res) => {
      if (req.session.logged_in) {
-          res.redirect('/');
+          res.redirect('/memberlist');
           return;
      }
 
@@ -37,7 +37,7 @@ router.get('/login', (req, res) => {
 /**
  * This route will retrieve the recipes and pass them over to the list handlebars
  */
-router.get('/list', withAuth, async (req, res) => {
+router.get('/list', async (req, res) => {
 
      const dbData = await Recipe.findAll({
           include: { all: true, nested: true },
@@ -134,7 +134,7 @@ router.get('/create', async (req, res) => {
 
 });
 
-router.get('/view/:id', withAuth, async (req, res) => {
+router.get('/view/:id', async (req, res) => {
      try {
           const recipeData = await Recipe.findByPk(req.params.id, {
                include: [
@@ -150,7 +150,8 @@ router.get('/view/:id', withAuth, async (req, res) => {
           const recipe = recipeData.get({ plain: true });
           recipe.instructions = recipe.instructions.replace(/(?:\r\n|\r|\n)/g, '\\n');
           const isEditable = recipeData.user_id == req.session.user_id
-          if (req.session.logged_in) {
+
+
                res.render('recipe', {
                     recipe, 
                     isEditable,
@@ -161,7 +162,7 @@ router.get('/view/:id', withAuth, async (req, res) => {
                     title: "Cravings",
                     message: "We hope you enjoy this recipe!"
                });
-          }
+          
 
      } catch (err) {
           console.log(err);

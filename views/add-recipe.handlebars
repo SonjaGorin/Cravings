@@ -1,4 +1,4 @@
-<section class="h-75">
+<section class="h-75 create-recipe-bg">
 
     <div class="container">
         <div class="row">
@@ -65,7 +65,8 @@
                             </div>
                             <div class="col-md-2">
                                 <select class="h-custom-2 form-select form-control-sm edit-measurement-unit-value" id="add-measurement-unit-input">
-                                {{> measurement-units }}
+                                    <option value="">Choose Unit</option>
+                                    {{> measurement-units }}
                                 </select>
                             </div>
                             <div class="col-md-1 ingredients-inputs-section">

@@ -1,4 +1,4 @@
-{{log origin_call}}
+{{!-- {{log origin_call}} --}}
 <section class="h-75">
      <div class="container-fluid">
 
@@ -7,14 +7,16 @@
                <div class="col-xs-6 col-md-3 col-xl-2 text-black mb-2">
                     <select id="categorylist" class="h-custom-2 ms-xl-4 form-select form-control-lg"
                          aria-label="Select Article Category">
-                         <option>Filter by Category</option>
+                         <option value= "">Filter by Category</option>
+                         <option value="all">See All Recipes</option>
                     </select>
                </div>
                {{#if user_all}}
                <div class="col-xs-6 col-md-3 col-xl-2 text-black mb-2">
                     <select id="memberslist" class="h-custom-2 ms-xl-4 form-select form-control-lg"
                          aria-label="Select a member">
-                         <option>Filter by User</option>
+                         <option value= "">Filter by User</option>
+                         <option value="all">See All Recipes</option>
                     </select>
                </div>
                {{/if}}
