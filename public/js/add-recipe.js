@@ -1,8 +1,10 @@
 const emptyIngredientNameInputEl = document.querySelector(".name-input");
 const emptyMeasurementNameInputEl = document.querySelector(".measure-input");
+const emptyRecipeNameInputEl = document.querySelector(".recipe-name")
+const instructionInputEl = document.getElementById("add-recipe-instructions-input");
+
 const createRecipeButtonEl = document.querySelector("#create-button");
 const addIngredientButton = document.querySelector(".add-ingr-button");
-const instructionInputEl = document.getElementById("add-recipe-instructions-input");
 
 const createRecipe = async (event) => {
     event.preventDefault();
@@ -93,13 +95,17 @@ const addIngredient = () => {
     addIngredientButton.disabled = true;
 }
 
-const disableButton = () => {
-    if (emptyMeasurementNameInputEl.value === "" && emptyIngredientNameInputEl.value === "") {
+createRecipeButtonEl.disabled = true;
+
+const disableCreateButton = () => {
+    if (emptyMeasurementNameInputEl.value === "" && emptyIngredientNameInputEl.value === "" && emptyRecipeNameInputEl.value !== "" && instructionInputEl !== "") {
         createRecipeButtonEl.disabled = false;
     } else {
         createRecipeButtonEl.disabled = true;
     }
 }
+
+
 
 const disableIngredientButton = () => {
     if (emptyMeasurementNameInputEl.value === "" || emptyIngredientNameInputEl.value === "") {
@@ -109,8 +115,10 @@ const disableIngredientButton = () => {
     }
 }
 
-emptyIngredientNameInputEl.addEventListener("input", disableButton);
-emptyMeasurementNameInputEl.addEventListener("input", disableButton);
+emptyIngredientNameInputEl.addEventListener("input", disableCreateButton);
+emptyMeasurementNameInputEl.addEventListener("input", disableCreateButton);
+emptyRecipeNameInputEl.addEventListener("input", disableCreateButton);
+instructionInputEl.addEventListener("input", disableCreateButton);
 
 emptyIngredientNameInputEl.addEventListener("input", disableIngredientButton);
 emptyMeasurementNameInputEl.addEventListener("input", disableIngredientButton);
