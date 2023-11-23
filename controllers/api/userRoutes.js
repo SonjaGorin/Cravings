@@ -9,26 +9,64 @@
  * Date : 11/14/2023 5:50:29 PM
  *******************************************************************/
 const router = require("express").Router();
+const validator = require('validator');
 const { Users, Recipe } = require("../../models");
 
 router.post("/register", async (req, res) => {
+  
   try {
+
+  const {username, useremail, userpassword} = req.body;
+
+  if (!(validator.isAlpha(username))) {
+    return res.status(400).json({ error: "Please enter only alpha characters." });
+  }
+
+  if (!(validator.isEmail(useremail))) {
+    return res.status(400).json({ error: "Please enter a valid email format." });
+  }
+  
+  if (!(validator.isLength(userpassword, {min: 8}))) {
+    return res.status(400).json({ error: "Password must be minimum of 8 characters long." });
+  }
+  
+  
+    
     const dsData = await Users.create({
       name: req.body.username,
       email: req.body.useremail,
       password: req.body.userpassword,
     });
+
+
     res.status(200).json(dsData);
-  } catch (error) {
-    res.status(400).json(error);
+  } catch (err) {
+    res.status(400).json(err);
   }
 });
+
+
+
+
+
 
 /**
  * User Login POST endpoint - validate user login and create a session at login.
  */
 router.post("/login", async (req, res) => {
+  
+  
+
   try {
+
+    const {email} = req.body;
+
+    if (!(validator.isEmail(email))) {
+      res
+        .status(400)
+        .json({ message: "Please enter a valid email." });
+    }
+
     // Retrieve user - we use the email address as the login
     const dsData = await Users.findOne({ where: { email: req.body.email } });
 

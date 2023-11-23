@@ -8,6 +8,10 @@
  * 
  * Date : 11/21/2023 2:46:52 PM
  *******************************************************************/
+
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
      /**
@@ -15,12 +19,17 @@ document.addEventListener("DOMContentLoaded", function () {
       * @param {*} event 
       * @returns 
       */
-     const validateEmailAddress = async (event) => {
+     const validateEmailAddress = async () => {
 
           const useremail = document.querySelector('#useremail').value.trim();
 
-          if (useremail === "") {
+          if (validator.isEmpty(useremail)) {
                alert('You must enter an email address!');
+               return false;
+          }
+
+          if (!(validator.isEmail(useremail))) {
+               alert('Must have a valid email format.')
                return false;
           }
 
@@ -51,21 +60,38 @@ document.addEventListener("DOMContentLoaded", function () {
      const registerUser = async (event) => {
           event.preventDefault();
 
-          const username = document.getElementById('username').value.trim();
-          const useremail = document.getElementById('useremail').value.trim();
-          const userpassword = document.getElementById('userpassword').value.trim();
-          const passwordvalidate = document.getElementById('passwordvalidate').value.trim();
-          
-          if (userpassword && (userpassword !== passwordvalidate)) {
+          const useremail = document.querySelector('#useremail').value.trim();
+          const userpassword = document.querySelector('#userpassword').value.trim();
+          const passwordvalidate = document.querySelector('#passwordvalidate').value.trim();
+          const username = document.querySelector('#username').value.trim();
+
+
+          if (!(validator.isAlpha(username))) {
+               alert("Please enter a proper name.")
+               return false
+          }
+
+          if (validator.isEmpty(userpassword)) {
+               alert("Please enter a password.")
+               return false;
+          }
+
+
+               if (!(validator.isLength(userpassword, {min: 8}))) {
+            alert('Password must be a minimum of 8 characters.')
+            return false;
+          }
+
+          if (!(validator.equals(userpassword, passwordvalidate))) {               
                alert('Invalid password! they need to match.');
                return false;
           }
 
           debugger;
 
-          if (username && useremail) {
-               debugger;
 
+          try {
+          if (username && useremail && userpassword) {
                const response = await fetch('/api/users/register', {
                     method: 'POST',
                     body: JSON.stringify({ username, useremail, userpassword }),
@@ -77,16 +103,21 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.location.replace("/list");
 
                } else {
-                    alert('Oh boy! Something went wrong. I am sorry please contact me. Urgh... hate when this happens');
+                    throw new Error('Password must be 8 characters or longer.');
                }
           }
-     };
+     } catch (error) {
+         alert("Password must be 8 characters or longer.")
+     }
+
+       
+};
 
      // Email validation not implemented -we have a different method.
-     function validateEmail(email) {
-          var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          return emailRegex.test(email);
-     }
+     // function validateEmail(email) {
+     //      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+     //      return emailRegex.test(email);
+     // }
 
      // Script entry point start process - add here event listeners
      function initialize() {
