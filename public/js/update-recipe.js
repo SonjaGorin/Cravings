@@ -1,6 +1,8 @@
 const emptyIngredientNameInputEl = document.querySelector(".name-input");
 const emptyMeasurementNameInputEl = document.querySelector(".measure-input");
-const createRecipeButtonEl = document.querySelector("#update-button");
+const emptyRecipeNameInputEl = document.querySelector(".recipe-name")
+
+const updateRecipeButtonEl = document.querySelector("#update-button");
 const addIngredientButton = document.querySelector(".add-ingr-button");
 
 const editRecipe = async (event) => {
@@ -60,6 +62,10 @@ const addIngredient = () => {
     const measurementDiv = document.createElement("div");
     measurementDiv.setAttribute("class", "col-md-3")
 
+    const deleteIngrButtonDiv = document.createElement("div");
+    deleteIngrButtonDiv.setAttribute("class", "col-md-1");
+    deleteIngrButtonDiv.setAttribute("onclick", "removeIngredient(event)");
+
     const unitDiv = document.createElement("div");
     unitDiv.setAttribute("class", "col-md-2")
 
@@ -86,21 +92,34 @@ const addIngredient = () => {
     unitDiv.appendChild(measurementUnitInputEl)
     newIngredients.appendChild(unitDiv);
 
+    const deleteIngredientButtonEl = document.createElement("button");
+    deleteIngredientButtonEl.setAttribute("class", "btn wide-button");
+    deleteIngredientButtonEl.setAttribute("type", "button");
+    deleteIngredientButtonEl.setAttribute("style", "background-color: black;");
+
+    const iconButtonEl = document.createElement("i");
+    iconButtonEl.setAttribute("class", "bi bi-dash-square-dotted");
+    iconButtonEl.setAttribute("style", "color: white");
+
+    deleteIngredientButtonEl.appendChild(iconButtonEl);
+    deleteIngrButtonDiv.appendChild(deleteIngredientButtonEl);
+    newIngredients.appendChild(deleteIngrButtonDiv);
+
     ingredientsSectionEl.appendChild(newIngredients);
 
     document.querySelector("#add-ingredient-name-input").value = "";
     document.querySelector("#add-ingredient-measurement-input").value = "";
     document.querySelector("#add-measurement-unit-input").value = "";
     
-    createRecipeButtonEl.disabled = false;
+    updateRecipeButtonEl.disabled = false;
     addIngredientButton.disabled = true;
 }
 
-const disableButton = () => {
-    if (emptyMeasurementNameInputEl.value === "" && emptyIngredientNameInputEl.value === "") {
-        createRecipeButtonEl.disabled = false;
+const disableUpdateButton = () => {
+    if (emptyMeasurementNameInputEl.value === "" && emptyIngredientNameInputEl.value === "" && emptyRecipeNameInputEl.value !== "") {
+        updateRecipeButtonEl.disabled = false;
     } else {
-        createRecipeButtonEl.disabled = true;
+        updateRecipeButtonEl.disabled = true;
     }
 }
 
@@ -112,8 +131,13 @@ const disableIngredientButton = () => {
     }
 }
 
-emptyIngredientNameInputEl.addEventListener("input", disableButton);
-emptyMeasurementNameInputEl.addEventListener("input", disableButton);
+function removeIngredient(event) {
+    event.currentTarget.parentElement.remove();
+}
+
+emptyIngredientNameInputEl.addEventListener("input", disableUpdateButton);
+emptyMeasurementNameInputEl.addEventListener("input", disableUpdateButton);
+emptyRecipeNameInputEl.addEventListener("input", disableUpdateButton);
 
 emptyIngredientNameInputEl.addEventListener("input", disableIngredientButton);
 emptyMeasurementNameInputEl.addEventListener("input", disableIngredientButton);

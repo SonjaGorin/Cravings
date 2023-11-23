@@ -1,8 +1,10 @@
 const emptyIngredientNameInputEl = document.querySelector(".name-input");
 const emptyMeasurementNameInputEl = document.querySelector(".measure-input");
+const emptyRecipeNameInputEl = document.querySelector(".recipe-name")
+const instructionInputEl = document.getElementById("add-recipe-instructions-input");
+
 const createRecipeButtonEl = document.querySelector("#create-button");
 const addIngredientButton = document.querySelector(".add-ingr-button");
-const instructionInputEl = document.getElementById("add-recipe-instructions-input");
 
 const createRecipe = async (event) => {
     event.preventDefault();
@@ -29,8 +31,6 @@ const createRecipe = async (event) => {
     }
 };
 
-
-
 const ingredientsSectionEl = document.querySelector(".ingredients-section")
 
 const ingredients = () => {
@@ -54,7 +54,11 @@ const addIngredient = () => {
     ingredientDiv.setAttribute("class", "col-md-6")
 
     const measurementDiv = document.createElement("div");
-    measurementDiv.setAttribute("class", "col-md-3")
+    measurementDiv.setAttribute("class", "col-md-3");
+
+    const deleteIngrButtonDiv = document.createElement("div");
+    deleteIngrButtonDiv.setAttribute("class", "col-md-1");
+    deleteIngrButtonDiv.setAttribute("onclick", "removeIngredient(event)");
 
     const unitDiv = document.createElement("div");
     unitDiv.setAttribute("class", "col-md-2")
@@ -75,13 +79,25 @@ const addIngredient = () => {
     measurementDiv.appendChild(ingredientMeasurementInputEl)
     newIngredients.appendChild(measurementDiv);
 
-
     const measurementUnitInputEl = unitOptionsEl.cloneNode(true);
     measurementUnitInputEl.selectedIndex = unitOptionsEl.selectedIndex;
     measurementUnitInputEl.removeAttribute("id")
     measurementUnitInputEl.setAttribute("class", "add-measurement-unit-value form-control form-select");
     unitDiv.appendChild(measurementUnitInputEl)
     newIngredients.appendChild(unitDiv);
+
+    const deleteIngredientButtonEl = document.createElement("button");
+    deleteIngredientButtonEl.setAttribute("class", "btn wide-button");
+    deleteIngredientButtonEl.setAttribute("type", "button");
+    deleteIngredientButtonEl.setAttribute("style", "background-color: black;");
+
+    const iconButtonEl = document.createElement("i");
+    iconButtonEl.setAttribute("class", "bi bi-dash-square-dotted");
+    iconButtonEl.setAttribute("style", "color: white");
+
+    deleteIngredientButtonEl.appendChild(iconButtonEl);
+    deleteIngrButtonDiv.appendChild(deleteIngredientButtonEl);
+    newIngredients.appendChild(deleteIngrButtonDiv);
 
     ingredientsSectionEl.appendChild(newIngredients);
 
@@ -93,13 +109,21 @@ const addIngredient = () => {
     addIngredientButton.disabled = true;
 }
 
-const disableButton = () => {
-    if (emptyMeasurementNameInputEl.value === "" && emptyIngredientNameInputEl.value === "") {
+function removeIngredient(event) {
+    event.currentTarget.parentElement.remove();
+}
+
+createRecipeButtonEl.disabled = true;
+
+const disableCreateButton = () => {
+    if (emptyMeasurementNameInputEl.value === "" && emptyIngredientNameInputEl.value === "" && emptyRecipeNameInputEl.value !== "" && instructionInputEl !== "") {
         createRecipeButtonEl.disabled = false;
     } else {
         createRecipeButtonEl.disabled = true;
     }
 }
+
+
 
 const disableIngredientButton = () => {
     if (emptyMeasurementNameInputEl.value === "" || emptyIngredientNameInputEl.value === "") {
@@ -109,8 +133,10 @@ const disableIngredientButton = () => {
     }
 }
 
-emptyIngredientNameInputEl.addEventListener("input", disableButton);
-emptyMeasurementNameInputEl.addEventListener("input", disableButton);
+emptyIngredientNameInputEl.addEventListener("input", disableCreateButton);
+emptyMeasurementNameInputEl.addEventListener("input", disableCreateButton);
+emptyRecipeNameInputEl.addEventListener("input", disableCreateButton);
+instructionInputEl.addEventListener("input", disableCreateButton);
 
 emptyIngredientNameInputEl.addEventListener("input", disableIngredientButton);
 emptyMeasurementNameInputEl.addEventListener("input", disableIngredientButton);

@@ -13,8 +13,8 @@
                     <div class="col-md-6 text-black">
                          <div class="mb-3">
                               <label for="edit-recipe-name-input" class="form-label">Recipe Name</label>
-                              <input class="form-control" id="edit-recipe-name-input" type="text"
-                                   placeholder="Enter Recipe name" aria-label="Recipe name" value="{{ recipe.name }}" />
+                              <input class="form-control recipe-name" id="edit-recipe-name-input" type="text"
+                                    aria-label="Recipe name" value="{{ recipe.name }}" />
                          </div>
                     </div>
 
@@ -68,6 +68,12 @@
                                         {{> measurement-units }}
                                    </select>
                                    {{!-- <input class="form-control edit-measurement-unit-value" type="text" value="{{ingredient.unit}}"> --}}
+                              </div>
+                              <div class="col-md-1" onclick= "removeIngredient(event)">
+                                   <button class="btn wide-button" type="button"
+                                        style="background-color: black;">
+                                        <i class="bi bi-dash-square-dotted" style="color: white"></i>
+                                   </button>
                               </div>
                          </div>
                          {{/each}}
