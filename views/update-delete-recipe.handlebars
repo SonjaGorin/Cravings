@@ -1,8 +1,8 @@
-<section class="h-75">
+<section class="h-75 up-del-page">
 
      <div class="container">
           <div class="row">
-               <h3 class="fw-normal mb-3" style="letter-spacing: 1px;">Edit Recipe</h3>
+               <h3 class="fw-normal mb-3 create-r" style="letter-spacing: 1px;">Edit Recipe</h3>
           </div>
 
           <form class="edit-recipe-form">
@@ -12,7 +12,7 @@
                     <!-- Recipe name -->
                     <div class="col-md-6 text-black">
                          <div class="mb-3">
-                              <label for="edit-recipe-name-input" class="form-label">Recipe Name</label>
+                              <label for="edit-recipe-name-input" class="form-label rec-name">Recipe Name</label>
                               <input class="form-control recipe-name" id="edit-recipe-name-input" type="text"
                                     aria-label="Recipe name" value="{{ recipe.name }}" />
                          </div>
@@ -21,7 +21,7 @@
                     <!-- Recipe Category -->
                     <div class="col-md-4 text-black">
                          <div class="mb-3">
-                              <label for="category-id" class="form-label">Category</label>
+                              <label for="category-id" class="form-label cat-lab">Category</label>
                               <select id="category-id" class="h-custom-2 form-select form-control-sm">
                                    <option value={{ recipe.category.id }}>{{ recipe.category.name }}</option>
                                    {{#each categories as |category|}}
@@ -37,13 +37,13 @@
                     <div class="col-md-10">
                          <div class="row">
                               <div class="col-md-6">
-                                   <p>Ingredient Name</p>
+                                   <p class="ing-col">Ingredient Name</p>
                               </div>
                               <div class="col-md-3">
-                                   <p>Measurement</p>
+                                   <p class="ing-col">Measurement</p>
                               </div>
                               <div class="col-md-2">
-                                   <p>Unit</p>
+                                   <p class="ing-col">Unit</p>
                               </div>
                          </div>
                     </div>
@@ -119,7 +119,7 @@
                <!-- Section Preparations -->
                <div class="row mt-3 mb-5">
                     <div class="col-md-10">
-                         <label id="instructions-label" for="edit-recipe-instructions" class="form-label"><strong>Preparation Instructions</strong></label>
+                         <label id="instructions-label" for="edit-recipe-instructions" class="form-label prep"><strong>Preparation Instructions</strong></label>
 
                          <textarea class="form-control mb-3 edit-recipe-instructions-input" id="edit-recipe-instructions-input" rows="10"
                               name="edit-post-content">{{ recipe.instructions }}</textarea>

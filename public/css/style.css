@@ -19,11 +19,11 @@ body {
 
 a {
      text-decoration: none;
-     color: #43aea0;
+     color: #842029;
 }
 
 a:hover {
-     color: #00d3b8;
+     color: #ce8e93;
      text-decoration: none;
 }
 
@@ -35,6 +35,10 @@ h5,
 h6,
 .font-primary {
      font-family: "Lato", sans-serif;
+}
+
+#hero-text {
+     color: white;
 }
 
 /*--------------------------------------------------------------
@@ -67,8 +71,8 @@ section {
 
 .logo-navbar-cravings {
      color: #fff;
-     margin: 25px;
-     font-size: 32px;
+     margin: 25px 25px 25px 0;
+     font-size: 35px;
      font-weight: 700;
      letter-spacing: 1px;
 }
@@ -112,10 +116,8 @@ section {
      margin-left: 5px;
 }
 
-.navbar a:hover,
 .navbar .active,
-.navbar .active:focus,
-.navbar li:hover>a {
+.navbar .active:focus {
      color: #fff;
 }
 
@@ -131,6 +133,40 @@ section {
      font-size: calc(1.1rem + 0.3vw);
      font-weight: 500;
      line-height: 1.2;
+}
+
+.rec-title {
+     font-size: 35px;
+     font-weight: 500;
+}
+
+.rec-title,
+.cat-title,
+.prep-inst,
+.ing {
+     color:#842029;
+}
+
+.prep-inst {
+     font-size: 25px;
+}
+
+.create-r,
+.rec-name,
+.cat-lab,
+.ing-col,
+.prep {
+     color: white;
+}
+
+.add-bttn {
+     border-style: solid;
+     border-color: black;
+     border-width: 2px;
+}
+
+.editor-toolbar {
+     background-color: white;
 }
 
 .noleft {
@@ -168,20 +204,71 @@ section {
 #hero {
      width: 100%;
      height: 90vh;
-     background: url("../images/hero-background-dish.jpg") top center;
+     background: 
+          linear-gradient(
+               rgba(0, 0, 0, 0.7), 
+               rgba(0, 0, 0, 0.7)
+          ),
+          url("../images/hero-background-dish.jpg") top center;
+     background-size: cover;
+     position: relative;
+     /* margin-bottom: -80px; */
+}
+
+.create-recipe-bg {
+     width: 100%;
+     height: 90vh;
+     background: 
+          linear-gradient(
+               rgba(0, 0, 0, 0.6), 
+               rgba(0, 0, 0, 0.6)
+          ),
+          url("../images/sarma-serbian-meal.png") top center;
      background-size: cover;
      position: relative;
      margin-bottom: -80px;
 }
 
-#hero:before {
-     content: "";
-     background: rgba(56, 67, 65, 0.85);
-     position: absolute;
-     bottom: 0;
-     top: 0;
-     left: 0;
-     right: 0;
+.up-del-page {
+     width: 100%;
+     height: 90vh;
+     background: 
+          linear-gradient(
+               rgba(0, 0, 0, 0.6), 
+               rgba(0, 0, 0, 0.6)
+          ),
+          url("../images/beavertails.png") top center;
+     background-size: cover;
+     position: relative;
+     margin-bottom: -80px;
+}
+
+.log-style {
+     width: 100%;
+     height: 90vh;
+     background: 
+          linear-gradient(
+               rgba(0, 0, 0, 0.6), 
+               rgba(0, 0, 0, 0.6)
+          ),
+          url("../images/cocktails.png") top center;
+     background-size: cover;
+     position: relative;
+     margin-bottom: -80px;
+}
+
+.reg-style {
+     width: 100%;
+     height: 90vh;
+     background: 
+          linear-gradient(
+               rgba(0, 0, 0, 0.6), 
+               rgba(0, 0, 0, 0.6)
+          ),
+          url("../images/pasta.png") top center;
+     background-size: cover;
+     position: relative;
+     margin-bottom: -80px;
 }
 
 #hero .hero-container {
@@ -200,10 +287,11 @@ section {
 
 #hero h1 {
      margin: 0 0 10px 0;
-     font-size: 48px;
+     font-size: 52px;
      font-weight: 300;
      line-height: 56px;
      color: #fff;
+     font-weight:500;
 }
 
 #hero h2 {
@@ -215,6 +303,32 @@ section {
 
 #hero .btn-get-started {
      font-family: "Lato", sans-serif;
+     font-weight: 600;
+     font-size: 16px;
+     letter-spacing: 1px;
+     display: inline-block;
+     padding: 8px 28px 10px 28px;
+     border-radius: 50px;
+     transition: 0.5s;
+     border: 2px solid #fff;
+     color: #fff;
+}
+
+#hero .btn-get-started:hover {
+     background: #fff;
+     color: #842029;
+     border: 1px solid black;
+}
+
+.container-fluid {
+     position: relative;
+}
+
+.add-get-started {
+     position: fixed;
+     bottom: 70px;
+     right: 40px;
+     font-family: "Lato", sans-serif;
      font-weight: 400;
      font-size: 16px;
      letter-spacing: 1px;
@@ -222,15 +336,16 @@ section {
      padding: 8px 28px 10px 28px;
      border-radius: 50px;
      transition: 0.5s;
-     border: 1px solid #fff;
-     color: #fff;
+     border: 1px solid black;
+     background-color: #842029;
+     color: white;
 }
 
-#hero .btn-get-started:hover {
-     background: #fff;
+/* .add-get-started:hover {
+     background: black;
      color: #70b9b0;
      border: 1px solid #70b9b0;
-}
+} */
 
 @media (min-width: 1024px) {
      #hero {
@@ -249,6 +364,11 @@ section {
           line-height: 24px;
           margin-bottom: 30px;
      }
+}
+
+#hero-text {
+     color: white;
+     font-weight: bold;
 }
 
 /*--------------------------------------------------------------
