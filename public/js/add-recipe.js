@@ -60,6 +60,7 @@ const addIngredient = () => {
 
     const deleteIngrButtonDiv = document.createElement("div");
     deleteIngrButtonDiv.setAttribute("class", "col-md-1");
+    deleteIngrButtonDiv.setAttribute("onclick", "removeIngredient(event)");
 
     const unitDiv = document.createElement("div");
     unitDiv.setAttribute("class", "col-md-2")
@@ -80,7 +81,6 @@ const addIngredient = () => {
     measurementDiv.appendChild(ingredientMeasurementInputEl)
     newIngredients.appendChild(measurementDiv);
 
-
     const measurementUnitInputEl = unitOptionsEl.cloneNode(true);
     measurementUnitInputEl.selectedIndex = unitOptionsEl.selectedIndex;
     measurementUnitInputEl.removeAttribute("id")
@@ -96,6 +96,7 @@ const addIngredient = () => {
     const iconButtonEl = document.createElement("i");
     iconButtonEl.setAttribute("class", "bi bi-dash-square-dotted");
     iconButtonEl.setAttribute("style", "color: white");
+
     deleteIngredientButtonEl.appendChild(iconButtonEl);
     deleteIngrButtonDiv.appendChild(deleteIngredientButtonEl);
     newIngredients.appendChild(deleteIngrButtonDiv);
@@ -105,9 +106,15 @@ const addIngredient = () => {
     document.querySelector("#add-ingredient-name-input").value = "";
     document.querySelector("#add-ingredient-measurement-input").value = "";
     document.querySelector("#add-measurement-unit-input").value = "";
+
+    // deleteIngredientButtonEl.addEventListener('click', removeItem);
     
     createRecipeButtonEl.disabled = false;
     addIngredientButton.disabled = true;
+}
+
+function removeIngredient(event) {
+    event.currentTarget.parentElement.remove();
 }
 
 createRecipeButtonEl.disabled = true;
