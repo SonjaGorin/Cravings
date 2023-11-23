@@ -25,7 +25,7 @@ const createRecipe = async (event) => {
     });
   
     if (response.ok) {
-        document.location.replace("/memberlist");
+        document.location.replace("/recipelist");
     } else {
         alert(response.statusText);
     }

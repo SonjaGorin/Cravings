@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                if (response.ok) {
                     location.reload(true);
-                    location.replace("/");
+                    location.replace("/memberlist");
 
                } else {
                     alert('Failed to log in');

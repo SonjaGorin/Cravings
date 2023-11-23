@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                if (response.ok) {
                     
-                    document.location.replace("/list");
+                    document.location.replace("/memberlist");
 
                } else {
                     throw new Error('Password must be 8 characters or longer.');
