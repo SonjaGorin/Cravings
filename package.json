@@ -1,5 +1,5 @@
 {
-     "name": "MVC-Tech.blog",
+     "name": "cravings",
      "version": "1.0.0",
      "description": "",
      "main": "server.js",
@@ -8,7 +8,7 @@
           "seed": "node seeds/seeding.js"
      },
      "keywords": [],
-     "author": "OntarioTECK - Gustavo Miller",
+     "author": "Jacob Fournier-Martin, Sonja Gorin, Gustavo Miller",
      "license": "ISC",
      "dependencies": {
           "bcrypt": "^5.0.0",
@@ -23,8 +23,7 @@
           "mysql2": "^2.2.5",
           "node-notifier": "^10.0.1",
           "sequelize": "^6.3.5",
-          "simplemde": "^1.11.2"
+          "simplemde": "^1.11.2",
           "validator": "^13.11.0"
-
      }
 }
