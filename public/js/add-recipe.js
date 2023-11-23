@@ -1,13 +1,14 @@
 const emptyIngredientNameInputEl = document.querySelector(".name-input");
 const emptyMeasurementNameInputEl = document.querySelector(".measure-input");
 const createRecipeButtonEl = document.querySelector("#create-button");
-const addIngredientButton = document.querySelector(".add-ingr-button")
+const addIngredientButton = document.querySelector(".add-ingr-button");
+const instructionInputEl = document.getElementById("add-recipe-instructions-input");
 
 const createRecipe = async (event) => {
     event.preventDefault();
   
     const recipeName = document.querySelector("#add-recipe-name-input").value;
-    const preparationInstructions = document.querySelector("#add-recipe-instructions-input").value;
+    const preparationInstructions = simplemde.value();
     const categoryId = document.querySelector("#category-id").value;
   
     const response = await fetch("/api/recipes", {
