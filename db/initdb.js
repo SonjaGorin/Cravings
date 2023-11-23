@@ -12,7 +12,7 @@ require('dotenv').config();
 
 const connection = require("../config/newdb");
 const Chalk = require('chalk');
-const messages = require("../utils/formatter")
+const messages = require("../utils/formatter");
 const dic = require("./queries"); // Collection of SQL queries 
 
 /**
@@ -23,15 +23,11 @@ const dic = require("./queries"); // Collection of SQL queries
  * @returns 
  */
 exports.validateDB = async function (value) {
-
      if (process.env.DB_SEED === "1") {
-
           messages.msg(Chalk.bgRed(dic.messages.createdatabase), null, null, 80);
           return { force: true };
-
      } else {
           messages.msg(Chalk.bgGreen(`DATABASE ${value} ALREADY EXISTS!`));
           return { created: true, data: true };
      };
-
-}
+};

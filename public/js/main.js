@@ -43,7 +43,6 @@ $(document).ready(function () {
                               'Content-Type': 'application/json',
                          },
                     });
-
                });
           });
      }
@@ -79,8 +78,5 @@ $(document).ready(function () {
           commentEvents();
           handleRespondLink();
      }
-
-
      initApplication();
-
 });

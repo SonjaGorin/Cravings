@@ -19,7 +19,7 @@ const seeding = require("./seeds/seeding");
 const path = require("path");
 
 // Custom customized initialization
-const messages = require("./utils/formatter")
+const messages = require("./utils/formatter");
 
 const sequelize = require("./config/connection");
 
@@ -102,11 +102,8 @@ sequelize.sync({ force: false }).then(() => {
                          } catch (err) {
                               console.log(err);
                          }
-
                     });
-
           }
           messages.apiendpoints();
      });
-
 });

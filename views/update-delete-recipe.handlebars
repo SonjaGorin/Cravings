@@ -6,7 +6,6 @@
           </div>
 
           <form class="edit-recipe-form">
-
                <div class="row">
 
                     <!-- Recipe name -->
@@ -49,9 +48,7 @@
                     </div>
                </div>
 
-               {{!-- id=ingredient.id --}}
-
-                         <!-- Section Ingredients -->
+               <!-- Section Ingredients -->
                <div class="row mb-1">
                     <div class="col-md-10 ingredients-section">
                          {{#each recipe.ingredients as |ingredient| }}
@@ -68,7 +65,6 @@
                                         <option value="">Choose Unit</option>
                                         {{> measurement-units }}
                                    </select>
-                                   {{!-- <input class="form-control edit-measurement-unit-value" type="text" value="{{ingredient.unit}}"> --}}
                               </div>
                               <div class="col-md-1" onclick= "removeIngredient(event)">
                                    <button class="btn wide-button" type="button"
@@ -103,8 +99,6 @@
                                         <option value="">Choose Unit</option>
                                         {{> measurement-units }}
                                    </select>
-                                   {{!-- <input class="form-control edit-measurement-unit-value" type="text" id="add-measurement-unit-input"
-                                        name="add-measurement-unit" aria-label="Measurement unit" /> --}}
                               </div>
                               <div class="col-md-1 ingredients-inputs-section">
                                    <button class="btn wide-button add-ingr-button" id="add-ingredient-button" type="button"
@@ -131,15 +125,13 @@
                          <a class="btn btn-dark mr-1 mt-1" style="width:150px" href="/list"><i class="bi bi-door-open"></i>
                               Go Back</a>
                     </div>
-
                </div>
           </form>
-
      </div>
-
 </section>
 
 <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+
 <script>
     simplemde = new SimpleMDE();
 </script>
