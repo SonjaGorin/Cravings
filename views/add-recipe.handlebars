@@ -2,21 +2,21 @@
 
     <div class="container">
         <div class="row">
-            <h3 class="fw-normal mb-3" style="letter-spacing: 1px;">Create New Recipe</h3>
+            <h3 class="mb-3 create-r" style="letter-spacing: 1px;">Create New Recipe</h3>
         </div>
 
         <form class="add-recipe-form">
             <div class="row">
                 <div class="col-md-6 text-black">
                         <div class="mb-3">
-                            <label for="recipename" class="form-label">Recipe Name</label>
+                            <label for="recipename" class="form-label rec-name">Recipe Name</label>
                             <input class="form-control recipe-name" id="add-recipe-name-input" type="text"
                                 aria-label="default input example">
                         </div>
                 </div>
                 <div class="col-md-4 text-black">
                         <div class="mb-3">
-                            <label for="catselect" class="form-label">Categories</label>
+                            <label for="catselect" class="form-label cat-lab">Categories</label>
                             <select name="" id="category-id" class="h-custom-2 form-select form-control-sm">
                                 <option>Choose Category</option>
                                 {{#each categories}}
@@ -33,13 +33,13 @@
                 <div class="col-md-10">
                         <div class="row">
                             <div class="col-md-6">
-                                <p>Ingredient</p>
+                                <p class="ing-col">Ingredient</p>
                             </div>
                             <div class="col-md-3">
-                                <p>Measurement</p>
+                                <p class="ing-col">Measurement</p>
                             </div>
                             <div class="col-md-2">
-                                <p>Unit</p>
+                                <p class="ing-col">Unit</p>
                             </div>
                         </div>
                 </div>
@@ -84,9 +84,9 @@
             <!-- Section Preparations -->
             <div class="row mt-3">
                 <div class="col-md-10">
-                        <label for="preparation" class="form-label"><strong>Preparation Instructions</strong></label>
+                        <label for="preparation" class="form-label prep"><strong>Preparation Instructions</strong></label>
                         <textarea class="form-control inst-input" id="add-recipe-instructions-input" rows="5"></textarea>
-                        <button id="create-button" class="btn mr-1 mt-1" style="background-color: #842029;color:white;"><i
+                        <button id="create-button" class="btn mr-1 mt-1 add-bttn" style="background-color: #842029;color:white;"><i
                                 class="bi bi-apple"></i> Create</button>
                         <a class="btn btn-dark mr-1 mt-1" style="width:150px" href="/list"><i class="bi bi-door-open"></i>
                             Cancel</a>
