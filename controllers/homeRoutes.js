@@ -82,21 +82,18 @@ router.get('/memberlist', withAuth, async (req, res) => {
      // This will serialize the data prior to send to handlebar. We are using list 
      // in this case as we are dealing with a bunch of records. 
      const handlebarData = dbData.map((list) => list.get({ plain: true }));
-     const callingname = "memberlist";
+     console.log(handlebarData);
+     req.session.origin_call = "memberlist"; //Store call origin
 
-     if (handlebarData.length != 0) {
-
-          req.session.origin_call = "memberlist"; //Store call origin
-
-          res.render('recipelist', {
-               handlebarData,
-               logged_in: req.session.logged_in,
-               user_id: req.session.user_id,
-               user_name: req.session.user_name,
-               origin_call: req.session.origin_call,
-               user_all: false,
-          });
-     }
+     res.render('recipelist', {
+          handlebarData,
+          logged_in: req.session.logged_in,
+          user_id: req.session.user_id,
+          user_name: req.session.user_name,
+          origin_call: req.session.origin_call,
+          user_all: false,
+     });
+     
 
 });
 
