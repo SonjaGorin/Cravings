@@ -217,7 +217,6 @@ section {
           url("../images/hero-background-dish.jpg") top center;
      background-size: cover;
      position: relative;
-     /* margin-bottom: -80px; */
 }
 
 .create-recipe-bg {
@@ -345,12 +344,6 @@ section {
      background-color: #842029;
      color: white;
 }
-
-/* .add-get-started:hover {
-     background: black;
-     color: #70b9b0;
-     border: 1px solid #70b9b0;
-} */
 
 @media (min-width: 1024px) {
      #hero {

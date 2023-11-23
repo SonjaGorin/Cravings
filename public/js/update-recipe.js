@@ -1,6 +1,6 @@
 const emptyIngredientNameInputEl = document.querySelector(".name-input");
 const emptyMeasurementNameInputEl = document.querySelector(".measure-input");
-const emptyRecipeNameInputEl = document.querySelector(".recipe-name")
+const emptyRecipeNameInputEl = document.querySelector(".recipe-name");
 
 const updateRecipeButtonEl = document.querySelector("#update-button");
 const addIngredientButton = document.querySelector(".add-ingr-button");

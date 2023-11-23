@@ -33,6 +33,6 @@ Recipe.belongsTo(Users, {
 Recipe.Ingredients = Recipe.hasMany(Ingredients,{
      foreignKey: "recipe_id",
      onDelete: 'CASCADE'
-})
+});
 
 module.exports = { Users, Category, Recipe, Ingredients };

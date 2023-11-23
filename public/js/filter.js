@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
                const value = recipes[i].getAttribute('data-category');
 
                if (value != selectedValue && selectedValue != "all") {
-                    recipes[i].setAttribute('hidden', true)
+                    recipes[i].setAttribute('hidden', true);
                } else {
                     if (recipes[i].hasAttribute("hidden")) {
                          recipes[i].removeAttribute("hidden");
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
                const value = recipes[i].getAttribute('data-memberid');
 
                if (value != selectedValue  && selectedValue != "all") {
-                    recipes[i].setAttribute('hidden', true)
+                    recipes[i].setAttribute('hidden', true);
                } else {
                     if (recipes[i].hasAttribute("hidden")) {
                          recipes[i].removeAttribute("hidden");
@@ -91,7 +91,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     optionitem.setAttribute('id', 'categoryId' + data[i].id)
                     dropdown.appendChild(optionitem);
                }
-
           } else {
                alert(response.statusText);
           }
@@ -104,7 +103,6 @@ document.addEventListener("DOMContentLoaded", function () {
       * not it hides the row
       */
      const loadMembers = async () => {
-
           const response = await fetch('/api/users/members', {
                method: 'GET',
                headers: { 'Content-Type': 'application/json' },
@@ -124,23 +122,20 @@ document.addEventListener("DOMContentLoaded", function () {
                          let optionitem = document.createElement('option');
                          optionitem.value = data[i].id;
                          optionitem.innerHTML = data[i].name;
-                         optionitem.setAttribute('id', 'memberId' + data[i].id)
+                         optionitem.setAttribute('id', 'memberId' + data[i].id);
                          dropdown.appendChild(optionitem);
                     }
-
                }
-
           } else {
                alert(response.statusText);
           }
-
      }
 
      // Script entry point start process - add here event listeners
      function initialize() {
 
           loadCategory(); //Load the categories from api/categories
-          loadMembers() //Load members from api/users/members
+          loadMembers(); //Load members from api/users/members
 
           selectedcat.addEventListener("change", filterCategory);
 
@@ -149,8 +144,6 @@ document.addEventListener("DOMContentLoaded", function () {
           if (selectedmem !== null) {
                selectedmem.addEventListener("change", filterMembers);
           }
-
      }
-
      initialize();
 });

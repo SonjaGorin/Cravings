@@ -30,7 +30,6 @@ router.get('/login', (req, res) => {
           res.redirect('/memberlist');
           return;
      }
-
      res.render('login');
 });
 
@@ -38,7 +37,6 @@ router.get('/login', (req, res) => {
  * This route will retrieve the recipes and pass them over to the list handlebars
  */
 router.get('/list', async (req, res) => {
-
      const dbData = await Recipe.findAll({
           include: { all: true, nested: true },
           attributes: { exclude: ['instructions'] },
@@ -50,9 +48,7 @@ router.get('/list', async (req, res) => {
      const handlebarData = dbData.map((list) => list.get({ plain: true }));
 
      if (handlebarData.length != 0) {
-          
           req.session.origin_call = "list"; //Store call origin
-
           res.render('recipelist', {
                handlebarData,
                logged_in: req.session.logged_in,
@@ -61,9 +57,7 @@ router.get('/list', async (req, res) => {
                origin_call: req.session.origin_call,
                user_all: true,
           });
-
      }
-
 });
 
 /**
@@ -71,7 +65,6 @@ router.get('/list', async (req, res) => {
  * list handlebars, same as Homeroute /list
  */
 router.get('/memberlist', withAuth, async (req, res) => {
-
      const dbData = await Recipe.findAll({
           where: { user_id: req.session.user_id },
           include: { all: true, nested: true },
@@ -93,8 +86,6 @@ router.get('/memberlist', withAuth, async (req, res) => {
           origin_call: req.session.origin_call,
           user_all: false,
      });
-     
-
 });
 
 /**
@@ -106,18 +97,13 @@ router.get('/register', (req, res) => {
           alert(dic.messages.registernot);
           return;
      }
-
      res.render('register');
-})
+});
 
 router.get('/create', async (req, res) => {
-
      try {
           const categoryData = await Category.findAll();
-
-          const categories = categoryData.map(data => data.get({ plain: true }))
-
-
+          const categories = categoryData.map(data => data.get({ plain: true }));
 
           if (req.session.logged_in) {
                res.render('add-recipe', {
@@ -129,7 +115,6 @@ router.get('/create', async (req, res) => {
           console.log(err);
           res.status(500).json(err);
      }
-
 });
 
 router.get('/view/:id', async (req, res) => {
@@ -144,37 +129,27 @@ router.get('/view/:id', async (req, res) => {
                     }
                ]
           });
-
           const recipe = recipeData.get({ plain: true });
           recipe.instructions = recipe.instructions.replace(/(?:\r\n|\r|\n)/g, '\\n');
           const isEditable = recipeData.user_id == req.session.user_id
-
-
                res.render('recipe', {
                     recipe, 
                     logged_in: req.session.logged_in,
                     isEditable,
                     origin_call: req.session.origin_call,
                });
-
                notifier.notify({
                     title: "Cravings",
                     message: "We hope you enjoy this recipe!"
                });
-          
-
      } catch (err) {
           console.log(err);
           res.status(500).json(err);
      }
-
 });
 
 router.get('/edit/:id', withAuth, async (req, res) => {
-
      try {
-
-
           const recipeData = await Recipe.findByPk(req.params.id, {
                include: [
                     {
@@ -183,20 +158,13 @@ router.get('/edit/:id', withAuth, async (req, res) => {
                     {
                          model: Category
                     }
-
-
                ]
           });
-
-
           const recipe = recipeData.get({ plain: true })
 
           const categoryData = await Category.findAll();
-          const filteredCategories = categoryData.filter(category => category.id !== recipe.category_id)
-          const categories = filteredCategories.map(data => data.get({ plain : true }))
-
-
-
+          const filteredCategories = categoryData.filter(category => category.id !== recipe.category_id);
+          const categories = filteredCategories.map(data => data.get({ plain : true }));
 
           if (req.session.logged_in) {
                res.render('update-delete-recipe', {
@@ -209,11 +177,6 @@ router.get('/edit/:id', withAuth, async (req, res) => {
           console.log(err);
           res.status(500).json(err);
      }
-
 });
-
-
-
-
 
 module.exports = router;
