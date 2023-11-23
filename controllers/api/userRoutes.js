@@ -15,7 +15,7 @@ const { Users, Recipe } = require("../../models");
 router.post("/register", async (req, res) => {
   
   try {
-    
+
   const {username, useremail, userpassword} = req.body;
 
   if (!(validator.isAlpha(username))) {
@@ -55,9 +55,18 @@ router.post("/register", async (req, res) => {
  */
 router.post("/login", async (req, res) => {
   
-  if (!(validator.isEmail()))
+  
 
   try {
+
+    const {email} = req.body;
+
+    if (!(validator.isEmail(email))) {
+      res
+        .status(400)
+        .json({ message: "Please enter a valid email." });
+    }
+
     // Retrieve user - we use the email address as the login
     const dsData = await Users.findOne({ where: { email: req.body.email } });
 

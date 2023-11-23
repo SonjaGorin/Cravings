@@ -16,6 +16,16 @@ document.addEventListener("DOMContentLoaded", function () {
           const email = document.querySelector('#email-login').value.trim();
           const password = document.querySelector('#password-login').value.trim();
 
+          if (validator.isEmpty(email)) {
+               alert('You must enter an email address!');
+               return false;
+          }
+
+          if (!(validator.isEmail(email))) {
+               alert('Must have a valid email format.')
+               return false;
+          }
+
           if (email && password) {
                const response = await fetch('/api/users/login', {
                     method: 'POST',
