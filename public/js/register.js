@@ -51,17 +51,21 @@ document.addEventListener("DOMContentLoaded", function () {
      const registerUser = async (event) => {
           event.preventDefault();
 
-          const useremail = document.querySelector('#useremail').value.trim();
-          const userpassword = document.querySelector('#userpassword').value.trim();
-          const passwordvalidate = document.querySelector('#passwordvalidate').value.trim();
-          const username = document.querySelector('#username').value.trim();
-
+          const username = document.getElementById('username').value.trim();
+          const useremail = document.getElementById('useremail').value.trim();
+          const userpassword = document.getElementById('userpassword').value.trim();
+          const passwordvalidate = document.getElementById('passwordvalidate').value.trim();
+          
           if (userpassword && (userpassword !== passwordvalidate)) {
                alert('Invalid password! they need to match.');
                return false;
           }
 
+          debugger;
+
           if (username && useremail) {
+               debugger;
+
                const response = await fetch('/api/users/register', {
                     method: 'POST',
                     body: JSON.stringify({ username, useremail, userpassword }),
@@ -69,7 +73,9 @@ document.addEventListener("DOMContentLoaded", function () {
                });
 
                if (response.ok) {
-                    document.location.replace('/');
+                    
+                    document.location.replace("/list");
+
                } else {
                     alert('Oh boy! Something went wrong. I am sorry please contact me. Urgh... hate when this happens');
                }
