@@ -11,6 +11,7 @@
                          <option value="all">See All Recipes</option>
                     </select>
                </div>
+               
                {{#if user_all}}
                <div class="col-xs-6 col-md-3 col-xl-2 text-black mb-2">
                     <select id="memberslist" class="h-custom-2 ms-xl-4 form-select form-control-lg"
@@ -18,6 +19,16 @@
                          <option value= "">Filter by User</option>
                          <option value="all">See All Recipes</option>
                     </select>
+               </div>
+               {{/if}}
+
+               {{#if logged_in}}
+               <div class="col-md-1 col-xl-2 text-black">
+                    <a id="startbutton" href="/create" class="add-get-started scrollto">Add New Recipe</a>
+               </div>
+               {{else}}
+               <div class="col-xs-6 col-md-3 col-xl-2 text-black mb-2">
+                    <a id="startbutton" href="/create" class="add-get-started scrollto h-custom-2 ms-xl-4 form-select form-control-lg" hidden>Add New Recipe</a>
                </div>
                {{/if}}
           </div>
