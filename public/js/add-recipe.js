@@ -56,7 +56,10 @@ const addIngredient = () => {
     ingredientDiv.setAttribute("class", "col-md-6")
 
     const measurementDiv = document.createElement("div");
-    measurementDiv.setAttribute("class", "col-md-3")
+    measurementDiv.setAttribute("class", "col-md-3");
+
+    const deleteIngrButtonDiv = document.createElement("div");
+    deleteIngrButtonDiv.setAttribute("class", "col-md-1");
 
     const unitDiv = document.createElement("div");
     unitDiv.setAttribute("class", "col-md-2")
@@ -84,6 +87,18 @@ const addIngredient = () => {
     measurementUnitInputEl.setAttribute("class", "add-measurement-unit-value form-control form-select");
     unitDiv.appendChild(measurementUnitInputEl)
     newIngredients.appendChild(unitDiv);
+
+    const deleteIngredientButtonEl = document.createElement("button");
+    deleteIngredientButtonEl.setAttribute("class", "btn wide-button");
+    deleteIngredientButtonEl.setAttribute("type", "button");
+    deleteIngredientButtonEl.setAttribute("style", "background-color: black;");
+
+    const iconButtonEl = document.createElement("i");
+    iconButtonEl.setAttribute("class", "bi bi-dash-square-dotted");
+    iconButtonEl.setAttribute("style", "color: white");
+    deleteIngredientButtonEl.appendChild(iconButtonEl);
+    deleteIngrButtonDiv.appendChild(deleteIngredientButtonEl);
+    newIngredients.appendChild(deleteIngrButtonDiv);
 
     ingredientsSectionEl.appendChild(newIngredients);
 
