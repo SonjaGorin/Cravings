@@ -14,6 +14,8 @@ const { Users, Recipe } = require("../../models");
 
 router.post("/register", async (req, res) => {
   
+  try {
+    
   const {username, useremail, userpassword} = req.body;
 
   if (!(validator.isAlpha(username))) {
@@ -24,11 +26,11 @@ router.post("/register", async (req, res) => {
     return res.status(400).json({ error: "Please enter a valid email format." });
   }
   
-  if (!(validator.isLength(userpassword, {min: 3, max: 20}))) {
-    return res.status(400).json({ error: "Password must be 3 to 20 characters long." });
+  if (!(validator.isLength(userpassword, {min: 8}))) {
+    return res.status(400).json({ error: "Password must be minimum of 8 characters long." });
   }
   
-  try {
+  
     
     const dsData = await Users.create({
       name: req.body.username,
@@ -38,10 +40,15 @@ router.post("/register", async (req, res) => {
 
 
     res.status(200).json(dsData);
-  } catch (error) {
-    res.status(400).json(error);
+  } catch (err) {
+    res.status(400).json(err);
   }
 });
+
+
+
+
+
 
 /**
  * User Login POST endpoint - validate user login and create a session at login.

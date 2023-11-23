@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
       * @param {*} event 
       * @returns 
       */
-     const validateEmailAddress = async (event) => {
+     const validateEmailAddress = async () => {
 
           const useremail = document.querySelector('#useremail').value.trim();
 
@@ -77,8 +77,8 @@ document.addEventListener("DOMContentLoaded", function () {
           }
 
 
-               if (!(validator.isLength(userpassword, {min: 3, max: 20}))) {
-            alert('Password cannot be less than 3 characters or more than 20 characters.')
+               if (!(validator.isLength(userpassword, {min: 8}))) {
+            alert('Password must be a minimum of 8 characters.')
             return false;
           }
 
@@ -87,7 +87,9 @@ document.addEventListener("DOMContentLoaded", function () {
                return false;
           }
 
-          if (username && useremail) {
+
+          try {
+          if (username && useremail && userpassword) {
                const response = await fetch('/api/users/register', {
                     method: 'POST',
                     body: JSON.stringify({ username, useremail, userpassword }),
@@ -97,9 +99,14 @@ document.addEventListener("DOMContentLoaded", function () {
                if (response.ok) {
                     document.location.replace('/');
                } else {
-                    alert('Oh boy! Something went wrong. I am sorry please contact me. Urgh... hate when this happens');
+                    throw new Error('Password must be 8 characters or longer.');
                }
           }
+     } catch (error) {
+         alert("Password must be 8 characters or longer.")
+     }
+
+       
      };
 
      // Email validation not implemented -we have a different method.
