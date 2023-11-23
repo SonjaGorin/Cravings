@@ -121,7 +121,8 @@ router.get('/create', async (req, res) => {
 
           if (req.session.logged_in) {
                res.render('add-recipe', {
-                    categories
+                    categories,
+                    logged_in: req.session.logged_in,
                });
           }
      } catch (err) {
@@ -151,6 +152,7 @@ router.get('/view/:id', async (req, res) => {
 
                res.render('recipe', {
                     recipe, 
+                    logged_in: req.session.logged_in,
                     isEditable,
                     origin_call: req.session.origin_call,
                });
@@ -198,7 +200,9 @@ router.get('/edit/:id', withAuth, async (req, res) => {
 
           if (req.session.logged_in) {
                res.render('update-delete-recipe', {
-                    recipe, categories
+                    recipe, 
+                    categories,
+                    logged_in: req.session.logged_in,
                });
           }
      } catch (err) {
