@@ -148,8 +148,8 @@ router.get('/view/:id', withAuth, async (req, res) => {
           });
 
           const recipe = recipeData.get({ plain: true });
+          recipe.instructions = recipe.instructions.replace(/(?:\r\n|\r|\n)/g, '\\n');
           const isEditable = recipeData.user_id == req.session.user_id
-
           if (req.session.logged_in) {
                res.render('recipe', {
                     recipe, 

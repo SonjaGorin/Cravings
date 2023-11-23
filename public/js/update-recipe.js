@@ -8,7 +8,7 @@ const editRecipe = async (event) => {
 
     const recipeName = document.querySelector("#edit-recipe-name-input").value.trim();
     const categoryId = document.querySelector("#category-id").value.trim();
-    const recipeInstructions = document.querySelector("#edit-recipe-instructions-input").value.trim();
+    const recipeInstructions = simplemde.value();
 
     const recipeId = window.location.toString().split("/")[
         window.location.toString().split("/").length - 1];

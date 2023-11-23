@@ -42,7 +42,7 @@
           <div class="row mt-3 mb-5">
                <div class="col-md-10">
                     <label for="preparation" class="form-label"><strong>Preparation Instructions</strong></label>
-                    <p>{{ recipe.instructions }}</p>
+                    <div id="instructions"></div>
                     {{#if isEditable}} <!-- Prevent when not owner -->
                     <a href="/edit/{{recipe.id}}"  id="edit-button" class="btn mr-1 mt-1" style="background-color: #842029;color:white;width:150px"><i
                               class="bi bi-apple"></i> Edit</a>
@@ -55,3 +55,8 @@
      </div>
 
 </section>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+    document.getElementById('instructions').innerHTML = marked.parse("{{{recipe.instructions}}}", {breaks: true});
+</script>
