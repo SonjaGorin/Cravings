@@ -87,6 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
                return false;
           }
 
+          debugger;
+
 
           try {
           if (username && useremail && userpassword) {
@@ -97,7 +99,9 @@ document.addEventListener("DOMContentLoaded", function () {
                });
 
                if (response.ok) {
-                    document.location.replace('/');
+                    
+                    document.location.replace("/list");
+
                } else {
                     throw new Error('Password must be 8 characters or longer.');
                }
@@ -107,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
      }
 
        
-     };
+};
 
      // Email validation not implemented -we have a different method.
      // function validateEmail(email) {

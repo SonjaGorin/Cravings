@@ -34,8 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
                });
 
                if (response.ok) {
-                    document.location.reload(true);
-                    document.location.replace("/");
+                    location.reload(true);
+                    location.replace("/");
+
                } else {
                     alert('Failed to log in');
                }
