@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
                // data-attributes. This allows me to compare with what has been selected
                const value = recipes[i].getAttribute('data-category');
 
-               if (value != selectedValue) {
+               if (value != selectedValue && selectedValue != "all") {
                     recipes[i].setAttribute('hidden', true)
                } else {
                     if (recipes[i].hasAttribute("hidden")) {
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
                // data-attributes. This allows me to compare with what has been selected
                const value = recipes[i].getAttribute('data-memberid');
 
-               if (value != selectedValue) {
+               if (value != selectedValue  && selectedValue != "all") {
                     recipes[i].setAttribute('hidden', true)
                } else {
                     if (recipes[i].hasAttribute("hidden")) {
