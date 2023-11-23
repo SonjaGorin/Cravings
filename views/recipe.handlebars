@@ -3,13 +3,13 @@
 
      <div class="container">
           <div class="row">
-               <h2 class="fw-normal mb-3" style="letter-spacing: 1px;">{{ recipe.name }}</h2>
+               <h2 class="mb-3 rec-title" style="letter-spacing: 1px;">{{ recipe.name }}</h2>
           </div>
           
           <div class="row"> <!-- Category row -->
                <div class="col-md-6 text-black">
                     <div class="mb-3">
-                         <label class="form-label">Category Name: <span class="category-view">{{ recipe.category.name }}</span> </label>
+                         <label class="form-label cat-text">Category Name: <span class="category-view cat-title">{{ recipe.category.name }}</span> </label>
                     </div>
                </div>
           </div>
@@ -20,9 +20,9 @@
                     <table class="table table-responsive">
                          <thead>
                               <tr>
-                                   <th scope="col">Ingredient Name</th>
-                                   <th scope="col">Measurement</th>
-                                   <th scope="col">Unit</th>
+                                   <th class="ing" scope="col">Ingredient Name</th>
+                                   <th class="ing" scope="col">Measurement</th>
+                                   <th class="ing" scope="col">Unit</th>
                               </tr>
                          </thead>
                          <tbody>
@@ -41,7 +41,7 @@
           <!-- Section Preparations -->
           <div class="row mt-3 mb-5">
                <div class="col-md-10">
-                    <label for="preparation" class="form-label"><strong>Preparation Instructions</strong></label>
+                    <label for="preparation" class="form-label prep-inst"><strong>Preparation Instructions</strong></label>
                     <div id="instructions"></div>
                     {{#if isEditable}} <!-- Prevent when not owner -->
                     <a href="/edit/{{recipe.id}}"  id="edit-button" class="btn mr-1 mt-1" style="background-color: #842029;color:white;width:150px"><i

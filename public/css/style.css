@@ -135,6 +135,22 @@ section {
      line-height: 1.2;
 }
 
+.rec-title {
+     font-size: 35px;
+     font-weight: 500;
+}
+
+.rec-title,
+.cat-title,
+.prep-inst,
+.ing {
+     color:#842029;
+}
+
+.prep-inst {
+     font-size: 25px;
+}
+
 .noleft {
      padding-left: 0px;
 }
