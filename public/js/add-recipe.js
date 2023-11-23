@@ -31,8 +31,6 @@ const createRecipe = async (event) => {
     }
 };
 
-
-
 const ingredientsSectionEl = document.querySelector(".ingredients-section")
 
 const ingredients = () => {
@@ -106,8 +104,6 @@ const addIngredient = () => {
     document.querySelector("#add-ingredient-name-input").value = "";
     document.querySelector("#add-ingredient-measurement-input").value = "";
     document.querySelector("#add-measurement-unit-input").value = "";
-
-    // deleteIngredientButtonEl.addEventListener('click', removeItem);
     
     createRecipeButtonEl.disabled = false;
     addIngredientButton.disabled = true;

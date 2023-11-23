@@ -64,6 +64,7 @@ const addIngredient = () => {
 
     const deleteIngrButtonDiv = document.createElement("div");
     deleteIngrButtonDiv.setAttribute("class", "col-md-1");
+    deleteIngrButtonDiv.setAttribute("onclick", "removeIngredient(event)");
 
     const unitDiv = document.createElement("div");
     unitDiv.setAttribute("class", "col-md-2")
@@ -99,6 +100,7 @@ const addIngredient = () => {
     const iconButtonEl = document.createElement("i");
     iconButtonEl.setAttribute("class", "bi bi-dash-square-dotted");
     iconButtonEl.setAttribute("style", "color: white");
+
     deleteIngredientButtonEl.appendChild(iconButtonEl);
     deleteIngrButtonDiv.appendChild(deleteIngredientButtonEl);
     newIngredients.appendChild(deleteIngrButtonDiv);
@@ -127,6 +129,10 @@ const disableIngredientButton = () => {
     } else {
         addIngredientButton.disabled = false;
     }
+}
+
+function removeIngredient(event) {
+    event.currentTarget.parentElement.remove();
 }
 
 emptyIngredientNameInputEl.addEventListener("input", disableUpdateButton);
