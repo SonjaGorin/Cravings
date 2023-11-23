@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const sequelize = require('../../config/connection');
-const withAuth = require('../../utils/auth')
+const withAuth = require('../../utils/auth');
 
 const { Recipe, Category, Users, Ingredients } = require("../../models");
 
@@ -74,11 +74,8 @@ router.delete("/:id", withAuth, async (req, res) => {
 
 router.post("/", withAuth, async (req, res) => {
   try {
-
     const ingredientDetails = req.body.ingredients;
-
     const newRecipe = await Recipe.create(
-     
       {
         name: req.body.name,
         instructions: req.body.instructions,
@@ -90,20 +87,18 @@ router.post("/", withAuth, async (req, res) => {
       }
     );
 
-      if (ingredientDetails && ingredientDetails.length > 0) {
-        const createdIngredients = await Ingredients.bulkCreate(
-          ingredientDetails.map((ingredient) => ({
-            ingredient: ingredient.name,
-            measurement: ingredient.measure,
-            unit: ingredient.unit,
-            recipe_id: newRecipe.id,
-          }))
-        );
+    if (ingredientDetails && ingredientDetails.length > 0) {
+      const createdIngredients = await Ingredients.bulkCreate(
+        ingredientDetails.map((ingredient) => ({
+          ingredient: ingredient.name,
+          measurement: ingredient.measure,
+          unit: ingredient.unit,
+          recipe_id: newRecipe.id,
+        }))
+      );
       
-        await newRecipe.addIngredients(createdIngredients);
-      }
-
- 
+      await newRecipe.addIngredients(createdIngredients);
+    }
 
     if (newRecipe) {
       return res.status(201).json(newRecipe);
@@ -113,10 +108,8 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-
 router.put("/:id", withAuth, async (req, res) => {
   const t = await sequelize.transaction();
-
   try {
     console.log(req.body);
     const upRec = await Recipe.update(
@@ -131,16 +124,15 @@ router.put("/:id", withAuth, async (req, res) => {
         },
       }
     );
-    console.log("deleting");
+
     await Ingredients.destroy({
       where: {
         recipe_id: req.params.id,
       },
     });
-    console.log("deletion complete");
+
     const ingredientDetails = req.body.ingredients;
     if (ingredientDetails && ingredientDetails.length > 0) {
-      console.log("preparing");
       const createdIngredients = await Ingredients.bulkCreate(
         ingredientDetails.map((ingredient) => ({
           ingredient: ingredient.ingredient,
@@ -149,14 +141,11 @@ router.put("/:id", withAuth, async (req, res) => {
           recipe_id: req.params.id,
         }))
       );
-      console.log("updating");
       await t.commit();
-      console.log("done");
     }
 
     return res.status(200).json({"ok": true});
   } catch (err) {
-    console.log(err);
     await t.rollback();
     res.status(500).json(err);
   }

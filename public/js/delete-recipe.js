@@ -13,7 +13,7 @@ const deleteRecipe = async (event) => {
     } else {
         alert(response.statusText);
     }
-}
+};
 
 document
     .querySelector("#delete-button")

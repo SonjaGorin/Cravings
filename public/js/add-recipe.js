@@ -1,6 +1,6 @@
 const emptyIngredientNameInputEl = document.querySelector(".name-input");
 const emptyMeasurementNameInputEl = document.querySelector(".measure-input");
-const emptyRecipeNameInputEl = document.querySelector(".recipe-name")
+const emptyRecipeNameInputEl = document.querySelector(".recipe-name");
 const instructionInputEl = document.getElementById("add-recipe-instructions-input");
 
 const createRecipeButtonEl = document.querySelector("#create-button");
@@ -31,7 +31,7 @@ const createRecipe = async (event) => {
     }
 };
 
-const ingredientsSectionEl = document.querySelector(".ingredients-section")
+const ingredientsSectionEl = document.querySelector(".ingredients-section");
 
 const ingredients = () => {
     const result = [];
@@ -42,16 +42,16 @@ const ingredients = () => {
         result.push({name, measure, unit});
     })
     return result
-}
+};
 
-const unitOptionsEl = document.querySelector("#add-measurement-unit-input")
+const unitOptionsEl = document.querySelector("#add-measurement-unit-input");
 
 const addIngredient = () => {
     const newIngredients = document.createElement("div");
-    newIngredients.setAttribute("class", "added-ingredient row mb-1")
+    newIngredients.setAttribute("class", "added-ingredient row mb-1");
 
     const ingredientDiv = document.createElement("div");
-    ingredientDiv.setAttribute("class", "col-md-6")
+    ingredientDiv.setAttribute("class", "col-md-6");
 
     const measurementDiv = document.createElement("div");
     measurementDiv.setAttribute("class", "col-md-3");
@@ -61,29 +61,29 @@ const addIngredient = () => {
     deleteIngrButtonDiv.setAttribute("onclick", "removeIngredient(event)");
 
     const unitDiv = document.createElement("div");
-    unitDiv.setAttribute("class", "col-md-2")
+    unitDiv.setAttribute("class", "col-md-2");
 
     const ingredientNameInputEl = document.createElement("input");
     ingredientNameInputEl.setAttribute("type", "text");
     ingredientNameInputEl.setAttribute("class", "add-ingredient-name-value form-control");
     ingredientNameInputEl.setAttribute("name", "add-ingredient-name");
     ingredientNameInputEl.value = document.querySelector("#add-ingredient-name-input").value
-    ingredientDiv.appendChild(ingredientNameInputEl)
+    ingredientDiv.appendChild(ingredientNameInputEl);
     newIngredients.appendChild(ingredientDiv);
 
     const ingredientMeasurementInputEl = document.createElement("input");
     ingredientMeasurementInputEl.setAttribute("type", "text");
     ingredientMeasurementInputEl.setAttribute("class", "add-ingredient-measurement-value form-control");
     ingredientMeasurementInputEl.setAttribute("name", "add-ingredient-measurement");
-    ingredientMeasurementInputEl.value = document.querySelector("#add-ingredient-measurement-input").value
-    measurementDiv.appendChild(ingredientMeasurementInputEl)
+    ingredientMeasurementInputEl.value = document.querySelector("#add-ingredient-measurement-input").value;
+    measurementDiv.appendChild(ingredientMeasurementInputEl);
     newIngredients.appendChild(measurementDiv);
 
     const measurementUnitInputEl = unitOptionsEl.cloneNode(true);
     measurementUnitInputEl.selectedIndex = unitOptionsEl.selectedIndex;
-    measurementUnitInputEl.removeAttribute("id")
+    measurementUnitInputEl.removeAttribute("id");
     measurementUnitInputEl.setAttribute("class", "add-measurement-unit-value form-control form-select");
-    unitDiv.appendChild(measurementUnitInputEl)
+    unitDiv.appendChild(measurementUnitInputEl);
     newIngredients.appendChild(unitDiv);
 
     const deleteIngredientButtonEl = document.createElement("button");
@@ -122,8 +122,6 @@ const disableCreateButton = () => {
         createRecipeButtonEl.disabled = true;
     }
 }
-
-
 
 const disableIngredientButton = () => {
     if (emptyMeasurementNameInputEl.value === "" || emptyIngredientNameInputEl.value === "") {

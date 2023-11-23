@@ -22,7 +22,7 @@ const sql = {
      getcategories: `select distinctrow category.id, category.name from recipe join category on category.id=recipe.category_id;`,
      getmembers: `SELECT id,name FROM users;`,
      retrieveallrecipes: `SELECT * FROM recipe join ingredient on ingredient.recipe_id=recipe.id;`
-}
+};
 
 const messages = {
      mysqlLapps: chalk.bgRed("Carleton Universty Coding Bootcamp"),
@@ -35,5 +35,6 @@ const messages = {
      listeningdata: chalk.bgGreen('----- LISTENING PLEASE GO TO A BROWSER TO ACCESS DATA -----'),
      createdatabase: `Forcing update tables in the database! Synchronize database.`,
      registernot: `You cannot register! It looks like you are already signed in!`
-}
+};
+
 module.exports = { sql, messages };

@@ -26,10 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
      // Script entry point start process - add here event listeners
      const initApplication = () => {
-
           document.querySelector('#logout').addEventListener('click', logout);
-
      }
-
      initApplication();
 });
