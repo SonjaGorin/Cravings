@@ -79,7 +79,6 @@ document.addEventListener("DOMContentLoaded", function () {
                alert('Invalid password! they need to match.');
                return false;
           }
-          debugger;
 
           try {
                if (username && useremail && userpassword) {
@@ -99,12 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
                alert("Password must be 8 characters or longer.")
           }
      };
-
-     // Email validation not implemented -we have a different method.
-     // function validateEmail(email) {
-     //      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-     //      return emailRegex.test(email);
-     // }
 
      // Script entry point start process - add here event listeners
      function initialize() {
